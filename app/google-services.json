@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660810075708",
+    "firebase_url": "https://axee-de6fa.firebaseio.com",
+    "project_id": "axee-de6fa",
+    "storage_bucket": "axee-de6fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660810075708:android:8b2d605814f295ad6e7d39",
+        "android_client_info": {
+          "package_name": "com.example.axe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660810075708-h6531stgr6ipf1cj0caur47vinn280se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqQ6d5REgsuE2zr91eEZAWqF86A04BZXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660810075708-h6531stgr6ipf1cj0caur47vinn280se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
