@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AllCategory {
+public class AllCategory implements Serializable {
     Integer CatagoryId;
     String CatagoryTitle;
     private List<CategoryItem> categoryItemList = null;

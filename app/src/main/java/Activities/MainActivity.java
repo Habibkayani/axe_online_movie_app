@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
    MainRecylerAdapter mainRecylerAdapter;
     List<AllCategory> allCategoryList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryTab = findViewById(R.id.tabLayout);
         nestedScrollView = findViewById(R.id.nested_scroll);
         appBarLayout = findViewById(R.id.appbar);
+
+
 
         getSupportActionBar().setTitle("");
 

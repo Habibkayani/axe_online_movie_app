@@ -37,6 +37,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/quicksand_semibold"
         android:text="See More..."
+        android:clickable="true"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/item_recyler"

@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.CastMoviesAdapter;
-import Adapter.MainRecylerAdapter;
 import Adapter.SimilarMoviesAdapter;
-import Model.BannerMovies;
 import Model.MoviesCast;
 import Model.SimilarMovie;
 
@@ -43,9 +39,9 @@ CastMoviesAdapter castMoviesAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_details);
-        movieImage=findViewById(R.id.detail_image);
-        moviename=findViewById(R.id.detail_moviename);
-        back=findViewById(R.id.back);
+        movieImage=findViewById(R.id.tv_detail_image);
+        moviename=findViewById(R.id.tv_detail_moviename);
+        back=findViewById(R.id.tv_back);
         mId=getIntent().getStringExtra("movieId");
         mName=getIntent().getStringExtra("movieName");
         mImage=getIntent().getStringExtra("movieImageUrl");
@@ -115,7 +111,7 @@ CastMoviesAdapter castMoviesAdapter;
     }
 
     private void setsimlarMainRecyler(List<SimilarMovie> simlarmovieList) {
-        similarRecylerview = findViewById(R.id.similarmoviesrecylerview);
+        similarRecylerview = findViewById(R.id.tvsimilarmoviesrecylerview);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         similarRecylerview.setLayoutManager(layoutManager);
         simlarMoviesAdapter = new SimilarMoviesAdapter(this, simlarmovieList);
@@ -124,7 +120,7 @@ CastMoviesAdapter castMoviesAdapter;
 
     private void setMainRecyler(List<MoviesCast> moviesCastList) {
 
-        castRecylerview = findViewById(R.id.castrecylerview);
+        castRecylerview = findViewById(R.id.Tvcastrecylerview);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         castRecylerview.setLayoutManager(layoutManager);
         castMoviesAdapter = new CastMoviesAdapter(this, moviesCastList);

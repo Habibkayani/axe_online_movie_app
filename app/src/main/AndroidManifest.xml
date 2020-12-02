@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AXE"
         android:usesCleartextTraffic="true">
-        <activity android:name="Activities.VideoDetail"></activity>
+        <activity android:name="Activities.SeeMore"></activity>
+        <activity android:name="Activities.TvShowDetail" />
+        <activity android:name="Activities.VideoDetail" />
         <activity android:name="Activities.VideoDetails" />
         <activity
             android:name="Activities.MainActivity"

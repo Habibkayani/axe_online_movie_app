@@ -22,7 +22,7 @@
 
 
         <ImageView
-            android:id="@+id/detail_image"
+            android:id="@+id/tv_detail_image"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"
@@ -32,7 +32,7 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/detail_moviename"
+            android:id="@+id/tv_detail_moviename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_image" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_image" />
 
         <TextView
             android:id="@+id/textView6"
@@ -62,12 +62,12 @@
             android:text="IMDB Rating:"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView7"
+            app:layout_constraintEnd_toStartOf="@+id/tvrating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvrating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -78,7 +78,7 @@
             android:textColor="@color/red"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
 
         <TextView
             android:id="@+id/textView8"
@@ -93,12 +93,12 @@
             android:text="Genres:"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView9"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/detail_moviename" />
+            app:layout_constraintEnd_toStartOf="@+id/tvgenres"
+            app:layout_constraintStart_toEndOf="@+id/tvrating"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tvgenres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -109,10 +109,10 @@
             android:textColor="@color/red"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/tvplaybtn"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/tvtralier"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
@@ -140,12 +140,12 @@
             android:text="TRAILER"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
-            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/tvreport"
+            app:layout_constraintStart_toEndOf="@+id/tvplaybtn"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/tvreport"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
@@ -157,7 +157,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/tvgenres" />
 
         <TextView
             android:id="@+id/videodetailDes"
@@ -172,10 +172,10 @@
             android:textColor="@color/red"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvplaybtn" />
 
         <TextView
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/tvdescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -206,10 +206,10 @@
             android:textColor="@color/red"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+            app:layout_constraintTop_toBottomOf="@+id/tvdescription" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/castrecylerview"
+            android:id="@+id/Tvcastrecylerview"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginStart="32dp"
@@ -234,7 +234,7 @@
             android:textColor="@color/red"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/castrecylerview" />
+            app:layout_constraintTop_toBottomOf="@+id/Tvcastrecylerview" />
 
         <TextView
             android:id="@+id/textView13"
@@ -248,10 +248,10 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/castrecylerview" />
+            app:layout_constraintTop_toBottomOf="@+id/Tvcastrecylerview" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/similarmoviesrecylerview"
+            android:id="@+id/tvsimilarmoviesrecylerview"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginStart="32dp"
@@ -267,11 +267,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/tv_back"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="@+id/detail_image"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_image"
             app:srcCompat="@drawable/ic_back"
             tools:layout_editor_absoluteX="0dp" />
 
