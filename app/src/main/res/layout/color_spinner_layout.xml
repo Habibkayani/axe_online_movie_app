@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:text="Season 1"
+    android:textSize="12sp"
+    android:textColor="@color/white"
+android:paddingLeft="10dp"
+   android:textAlignment="center"
+    android:background="@color/red"
+    android:fontFamily="@font/quicksand_medium"
+
+    >
+
+</CheckedTextView>

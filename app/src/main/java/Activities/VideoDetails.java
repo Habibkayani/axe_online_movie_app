@@ -39,8 +39,8 @@ CastMoviesAdapter castMoviesAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_details);
-        movieImage=findViewById(R.id.tv_detail_image);
-        moviename=findViewById(R.id.tv_detail_moviename);
+        movieImage=findViewById(R.id.tv_detail_image1);
+        moviename=findViewById(R.id.tv_detail_moviename1);
         back=findViewById(R.id.tv_back);
         mId=getIntent().getStringExtra("movieId");
         mName=getIntent().getStringExtra("movieName");

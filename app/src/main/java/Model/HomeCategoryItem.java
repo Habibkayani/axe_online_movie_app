@@ -1,16 +1,14 @@
 package Model;
 
-import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class BannerMovies {
+public class HomeCategoryItem {
     Integer Id;
-
     String movieName;
-    @SerializedName("imageUrl")
     String ImageUrl;
     String fileUrl;
 
-    public BannerMovies(Integer id, String movieName, String imageUrl, String fileUrl) {
+    public HomeCategoryItem(Integer id, String movieName, String imageUrl, String fileUrl) {
         Id = id;
         this.movieName = movieName;
         ImageUrl = imageUrl;
@@ -49,8 +47,3 @@ public class BannerMovies {
         this.fileUrl = fileUrl;
     }
 }
-
-
-
-
-

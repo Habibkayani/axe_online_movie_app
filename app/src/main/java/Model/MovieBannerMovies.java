@@ -1,12 +1,16 @@
 package Model;
 
-public class CategoryItem {
+import com.google.gson.annotations.SerializedName;
+
+public class MovieBannerMovies {
     Integer Id;
     String movieName;
+    @SerializedName("imageUrl")
+
     String ImageUrl;
     String fileUrl;
 
-    public CategoryItem(Integer id, String movieName, String imageUrl, String fileUrl) {
+    public MovieBannerMovies(Integer id, String movieName, String imageUrl, String fileUrl) {
         Id = id;
         this.movieName = movieName;
         ImageUrl = imageUrl;
@@ -45,3 +49,8 @@ public class CategoryItem {
         this.fileUrl = fileUrl;
     }
 }
+
+
+
+
+

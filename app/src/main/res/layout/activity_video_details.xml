@@ -22,7 +22,7 @@
 
 
         <ImageView
-            android:id="@+id/tv_detail_image"
+            android:id="@+id/tv_detail_image1"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"
@@ -32,7 +32,7 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/tv_detail_moviename"
+            android:id="@+id/tv_detail_moviename1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_image" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_image1" />
 
         <TextView
             android:id="@+id/textView6"
@@ -64,7 +64,7 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/tvrating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename1" />
 
         <TextView
             android:id="@+id/tvrating"
@@ -78,7 +78,7 @@
             android:textColor="@color/red"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename1" />
 
         <TextView
             android:id="@+id/textView8"
@@ -95,7 +95,7 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/tvgenres"
             app:layout_constraintStart_toEndOf="@+id/tvrating"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename1" />
 
         <TextView
             android:id="@+id/tvgenres"
@@ -109,7 +109,7 @@
             android:textColor="@color/red"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename1" />
 
         <Button
             android:id="@+id/tvplaybtn"
@@ -271,7 +271,7 @@
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="@+id/tv_detail_image"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_image1"
             app:srcCompat="@drawable/ic_back"
             tools:layout_editor_absoluteX="0dp" />
 

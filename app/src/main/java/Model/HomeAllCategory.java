@@ -3,15 +3,15 @@ package Model;
 import java.io.Serializable;
 import java.util.List;
 
-public class AllCategory implements Serializable {
+public class HomeAllCategory implements Serializable {
     Integer CatagoryId;
     String CatagoryTitle;
-    private List<CategoryItem> categoryItemList = null;
+    private List<HomeCategoryItem> homeCategoryItemList = null;
 
-    public AllCategory(Integer catagoryId, String catagoryTitle, List<CategoryItem> categoryItemList) {
+    public HomeAllCategory(Integer catagoryId, String catagoryTitle, List<HomeCategoryItem> homeCategoryItemList) {
         this.CatagoryId = catagoryId;
         this.CatagoryTitle = catagoryTitle;
-        this.categoryItemList = categoryItemList;
+        this.homeCategoryItemList = homeCategoryItemList;
     }
 
     public Integer getCatagoryId() {
@@ -30,11 +30,11 @@ public class AllCategory implements Serializable {
         CatagoryTitle = catagoryTitle;
     }
 
-    public List<CategoryItem> getCategoryItemList() {
-        return categoryItemList;
+    public List<HomeCategoryItem> getHomeCategoryItemList() {
+        return homeCategoryItemList;
     }
 
-    public void setCategoryItemList(List<CategoryItem> categoryItemList) {
-        this.categoryItemList = categoryItemList;
+    public void setHomeCategoryItemList(List<HomeCategoryItem> homeCategoryItemList) {
+        this.homeCategoryItemList = homeCategoryItemList;
     }
 }

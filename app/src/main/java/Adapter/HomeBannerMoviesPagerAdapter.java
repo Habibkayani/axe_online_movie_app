@@ -17,21 +17,21 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.VideoDetails;
-import Model.BannerMovies;
+import Model.HomeBannerMovies;
 
-public class BannerMoviesPagerAdapter extends PagerAdapter {
+public class HomeBannerMoviesPagerAdapter extends PagerAdapter {
     private static final String TAG = "TAG";
     Context context;
-    List<BannerMovies> bannerMoviesList;
+    List<HomeBannerMovies> homeBannerMoviesList;
 
-    public BannerMoviesPagerAdapter(Context context, List<BannerMovies> bannerMoviesList) {
+    public HomeBannerMoviesPagerAdapter(Context context, List<HomeBannerMovies> homeBannerMoviesList) {
         this.context = context;
-        this.bannerMoviesList = bannerMoviesList;
+        this.homeBannerMoviesList = homeBannerMoviesList;
     }
 
     @Override
     public int getCount() {
-        return bannerMoviesList.size();
+        return homeBannerMoviesList.size();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BannerMoviesPagerAdapter extends PagerAdapter {
 //                .error(R.mipmap.ic_launcher)
 //                .priority(Priority.NORMAL)
 //                .diskCacheStrategy(DiskCacheStrategy.NONE);
-    Glide.with(context).load(bannerMoviesList.get(position).getImageUrl()).into(bannerimage);
+    Glide.with(context).load(homeBannerMoviesList.get(position).getImageUrl()).into(bannerimage);
    // Picasso.get().load(bannerMoviesList.get(position).getImageUrl()).into(bannerimage);
 
         //Glide.with(context).load(bannerMoviesList.get(position).getImageUrl()).thumbnail(0.05f).transition(DrawableTransitionOptions.withCrossFade()).fitCenter().centerInside().into(bannerimage);
@@ -66,10 +66,10 @@ public class BannerMoviesPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(context, VideoDetails.class);
-                i.putExtra("movieId",bannerMoviesList.get(position).getId());
-                i.putExtra("movieName",bannerMoviesList.get(position).getMovieName());
-                i.putExtra("movieImageUrl",bannerMoviesList.get(position).getImageUrl());
-                i.putExtra("movieFile",bannerMoviesList.get(position).getFileUrl());
+                i.putExtra("movieId", homeBannerMoviesList.get(position).getId());
+                i.putExtra("movieName", homeBannerMoviesList.get(position).getMovieName());
+                i.putExtra("movieImageUrl", homeBannerMoviesList.get(position).getImageUrl());
+                i.putExtra("movieFile", homeBannerMoviesList.get(position).getFileUrl());
                 context.startActivity(i);
 
             }

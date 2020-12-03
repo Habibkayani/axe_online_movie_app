@@ -2,8 +2,6 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,48 +11,45 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.axe.R;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import Activities.SeeMore;
-import Model.AllCategory;
-import Model.CategoryItem;
+import Model.MovieCategoryItem;
+import Model.TvShowAllCategory;
+import Model.TvShowCategoryItem;
 
-public class MainRecylerAdapter extends RecyclerView.Adapter<MainRecylerAdapter.MainViewHolder> {
+public class TvShowsMainRecylerAdapter extends RecyclerView.Adapter<TvShowsMainRecylerAdapter.MainViewHolder> {
     Context context;
-    List<AllCategory> allCategoryList;
+    List<TvShowAllCategory> tvShowAllCategories;
 
-    public MainRecylerAdapter(Context context, List<AllCategory> allCategoryList) {
+    public TvShowsMainRecylerAdapter(Context context, List<TvShowAllCategory> tvShowAllCategories) {
         this.context = context;
-        this.allCategoryList = allCategoryList;
+        this.tvShowAllCategories = tvShowAllCategories;
     }
 
     @NonNull
     @Override
-    public MainRecylerAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TvShowsMainRecylerAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MainViewHolder(LayoutInflater.from(context).inflate(R.layout.main_recyler_row_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainRecylerAdapter.MainViewHolder holder, int position) {
-        holder.CategoryName.setText(allCategoryList.get(position).getCatagoryTitle());
-        setItemRecyler(holder.itemRecyler, allCategoryList.get(position).getCategoryItemList());
+    public void onBindViewHolder(@NonNull TvShowsMainRecylerAdapter.MainViewHolder holder, int position) {
+        holder.CategoryName.setText(tvShowAllCategories.get(position).getCatagoryTitle());
+        setItemRecyler(holder.itemRecyler, tvShowAllCategories.get(position).getTvShowCategoryItemList());
         holder.seeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(context, SeeMore.class);
-                i.putExtra("cata",allCategoryList.get(position).getCatagoryTitle());
+                i.putExtra("cata", tvShowAllCategories.get(position).getCatagoryTitle());
+
 //                Bundle bundle = new Bundle();
 //                bundle.putParcelableArrayList("StudentDetails", (ArrayList<? extends Parcelable>) allCategoryList.get(position).getCategoryItemList());
 //                i.putExtras(bundle);
 
-                i.putExtra("PLACE", AllCategory);
-                startActivity(intent);
-
+                //i.putExtra("PLACE", AllCategory);
 
                 context.startActivity(i);
             }
@@ -63,7 +58,7 @@ public class MainRecylerAdapter extends RecyclerView.Adapter<MainRecylerAdapter.
 
     @Override
     public int getItemCount() {
-        return allCategoryList.size();
+        return tvShowAllCategories.size();
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder {
@@ -85,10 +80,10 @@ public class MainRecylerAdapter extends RecyclerView.Adapter<MainRecylerAdapter.
         }
     }
 
-    private void setItemRecyler(RecyclerView recyclerView, List<CategoryItem> categoryItemList) {
-        ItemRecylerViewAdapter itemRecylerViewAdapter = new ItemRecylerViewAdapter(context, categoryItemList);
+    private void setItemRecyler(RecyclerView recyclerView, List<TvShowCategoryItem> homeCategoryItemList) {
+        TvShowsItemRecylerViewAdapter homeItemRecylerViewAdapter = new TvShowsItemRecylerViewAdapter(context, homeCategoryItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(itemRecylerViewAdapter);
+        recyclerView.setAdapter(homeItemRecylerViewAdapter);
 
     }
 }
