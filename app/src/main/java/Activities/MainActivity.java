@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -248,61 +249,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MenuInflater inflater =getMenuInflater();
         inflater.inflate(R.menu.toolbar_search_menu,menu);
-        MenuItem searchMenu=menu.findItem(R.id.action_search);
-        androidx.appcompat.widget.SearchView searchView=(androidx.appcompat.widget.SearchView) MenuItemCompat.getActionView(searchMenu);
-        searchView.setBackground(getResources().getDrawable(R.drawable.bg_white_rounded));
-        searchView.setQueryHint("Type Here To Search");
+//        MenuItem searchMenu=menu.findItem(R.id.action_search);
+//        androidx.appcompat.widget.SearchView searchView=(androidx.appcompat.widget.SearchView) MenuItemCompat.getActionView(searchMenu);
+//        searchView.setBackground(getResources().getDrawable(R.drawable.bg_white_rounded));
+//        searchView.setQueryHint("Type Here To Search");
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        return true;
+        return super.onCreateOptionsMenu(menu);
 
 
 
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.nav_logout:
-//                //  Toast.makeText(getApplicationContext(),"good",Toast.LENGTH_LONG).toString();
-//                Intent i = new Intent(UserDashboard.this, MainActivity.class);
-//                startActivity(i);
-//                break;
-//
-//        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        switch (item.getItemId()) {
+            case R.id.Plyer_settings:
+                //  Toast.makeText(getApplicationContext(),"good",Toast.LENGTH_LONG).toString();
+                Intent i = new Intent(MainActivity.this, PlayerSettings.class);
+                startActivity(i);
+                break;
+            case R.id.Logouttt:
+                //  Toast.makeText(getApplicationContext(),"good",Toast.LENGTH_LONG).toString();
+                Intent ii = new Intent(MainActivity.this, Login.class);
+                startActivity(ii);
+                break;
 
+
+       }
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-
-            super.onBackPressed();
-        }
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if(toggle.onOptionsItemSelected(item)){
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
+
+        public void onBackPressed() {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+
+                super.onBackPressed();
+            }
+
+        }
+
+
+        @Override
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+
+            if (toggle.onOptionsItemSelected(item)) {
+                return true;
+            }
+            switch (item.getItemId()) {
+                case R.id.action_search:
+                    Intent i = new Intent(MainActivity.this, SearchAble.class);
+                    startActivity(i);
+                    break;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
 //    public void setMainrecyclerView(List<AllCategory> allCategoryList) {
 //        mainrecyclerView = findViewById(R.id.main_recyler);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -318,4 +335,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        appBarLayout.setExpanded(true);
 //
 //    }
-}
+    }
