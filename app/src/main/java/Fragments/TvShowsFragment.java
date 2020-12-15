@@ -10,23 +10,41 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.axe.R;
+import com.google.android.exoplayer2.C;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Activities.Login;
 import Adapter.TvShowsBannerMoviesPagerAdapter;
 import Adapter.TvShowsMainRecylerAdapter;
+import Model.LoginResponse;
 import Model.TvShowAllCategory;
 import Model.TvShowsBannerMovies;
 import Model.TvShowCategoryItem;
+import Model.UserProfile;
+import SessionManager.UserSession;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import Retrofit.ApiClient;
+import Retrofit.UserService;
+import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TvShowsFragment extends Fragment {
 
@@ -40,6 +58,7 @@ public class TvShowsFragment extends Fragment {
     List<TvShowAllCategory> tvShowAllCategoryList;
 
     TabLayout tabIndicator, categoryTab;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +80,61 @@ public class TvShowsFragment extends Fragment {
         nestedScrollView = view.findViewById(R.id.nested_scroll);
         // appBarLayout = view.findViewById(R.id.appbar);
 
+        ////token
+        UserSession userSession = new UserSession(getContext());
+        String token1 = userSession.GetKeyVlaue("access_token");
+        Log.d("Token",token1);
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .baseUrl("https://axetv.net/api/v2/")
+//                .build();
+//        UserService Client=retrofit.create(UserService.class);
+//        Call<UserProfile> responseBodyCall=Client.getTvShows("Bearer" +token1);
+//        responseBodyCall.enqueue(new Callback<UserProfile>() {
+//            @Override
+//            public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
+//
+//                UserProfile UserResponse=response.body();
+//                Toast.makeText(getContext(),UserResponse.getCategory(),Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserProfile> call, Throwable t) {
+//                Log.d("Failed",t.toString());
+//            }
+//        });
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", " Bearer " + token1)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://axetv.net/api/v2/get/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService Client = retrofit.create(UserService.class);
+        Call<UserProfile> responseBodyCall = Client.getUser("Bearer " + token1);
+        responseBodyCall.enqueue(new Callback<UserProfile>() {
+            @Override
+            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
+                UserProfile UserResponse = response.body();
+                Toast.makeText(getContext(),UserResponse.getCategory(), Toast.LENGTH_LONG).show();
+                Log.d("TAG",UserResponse.toString())
+  ;          }
+
+            @Override
+            public void onFailure(Call<UserProfile> call, Throwable t) {
+                Toast.makeText(getContext(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        //////////
         setupmoviesbanner();
         setupmoviestvshowsandhome();
     }
@@ -169,10 +243,10 @@ public class TvShowsFragment extends Fragment {
         bannerMovieViewPager2 = getActivity().findViewById(R.id.banner_viewPager2);
         tvShowsBannerMoviesPagerAdapter = new TvShowsBannerMoviesPagerAdapter(getContext(), homeHomeBannerMoviesList);
         bannerMovieViewPager2.setAdapter(tvShowsBannerMoviesPagerAdapter);
-        tabIndicator.setupWithViewPager( bannerMovieViewPager2);
+        tabIndicator.setupWithViewPager(bannerMovieViewPager2);
         Timer slideTimer = new Timer();
         slideTimer.scheduleAtFixedRate(new AutoSlider(), 4000, 6000);
-        tabIndicator.setupWithViewPager( bannerMovieViewPager2, true);
+        tabIndicator.setupWithViewPager(bannerMovieViewPager2, true);
     }
 
     class AutoSlider extends TimerTask {

@@ -11,27 +11,39 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.example.axe.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
 import Adapter.MainActivityNavigationPageAdapter;
 import Model.HomeBannerMovies;
+import SessionManager.PreferenceHelper;
+import SessionManager.UserSession;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ViewPager pager;
+
+
+    TextView navtext;
+    ImageView navimage;
 
 
     List<HomeBannerMovies> tcshowsHomeBannerMoviesList;
@@ -58,6 +70,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 //set tabs
+
+
+
+navimage=findViewById(R.id.nav_image);
+navtext=findViewById(R.id.nav_text);
+
+
+
         pager = findViewById(R.id.organizerdashboard_view_pager);
 
 
@@ -281,6 +301,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.Logouttt:
                 //  Toast.makeText(getApplicationContext(),"good",Toast.LENGTH_LONG).toString();
+//                SharedPreferences sharedpreferences = getSharedPreferences(Login.MyPREFERENCES, Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedpreferences.edit();
+//                editor.clear();
+//                editor.commit();
                 Intent ii = new Intent(MainActivity.this, Login.class);
                 startActivity(ii);
                 break;

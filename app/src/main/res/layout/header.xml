@@ -14,14 +14,14 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/nav_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         app:srcCompat="@drawable/profile" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/nav_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quicksand_bold"

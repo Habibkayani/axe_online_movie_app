@@ -71,4 +71,25 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //animation
+    def htextview_version = "0.1.2"
+    compile "com.hanks:htextview-base:$htextview_version"        // base library
+    compile "com.hanks:htextview-fall:$htextview_version"        // optional
+    compile "com.hanks:htextview-fade:$htextview_version"        // optional
+    compile "com.hanks:htextview-line:$htextview_version"        // optional
+    compile "com.hanks:htextview-rainbow:$htextview_version"     // optional
+    compile "com.hanks:htextview-typer:$htextview_version"       // optional
+    compile "com.hanks:htextview-scale:$htextview_version"       // optional
+    compile "com.hanks:htextview-evaporate:$htextview_version"   // optional
+
+    //Retrofit
+    //Retrofit & OkHttp for HTTP Calls
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 }
