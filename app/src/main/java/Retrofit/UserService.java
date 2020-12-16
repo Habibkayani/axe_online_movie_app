@@ -1,12 +1,17 @@
 package Retrofit;
 
+import com.google.gson.JsonObject;
+
 import Model.LoginRequest;
 import Model.LoginResponse;
 import Model.UserProfile;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -23,7 +28,10 @@ public interface UserService {
 //    @POST("get/tv-shows")
 //    Call<UserProfile> getTvShows(@Header("Authorization") String BearerToken);
 
-
+    @FormUrlEncoded
     @POST("tv-shows")
-    Call<UserProfile> getUser(@Header("Authorization") String authHeader);
+    @Headers("Accept:  application/json")
+    Call<JsonObject> getUser(@Header("Authorization") String authHeader, @Field("start") int start,
+                             @Field("limit") int limit,
+                             @Field ("order_by") String order_by, @Field ("order") String order);
 }

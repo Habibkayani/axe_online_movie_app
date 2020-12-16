@@ -3,8 +3,8 @@ package Model;
 public class UserProfile {
 
 
-        String category;
-       Movie movie;
+    String category;
+    Movie movie;
 
     public String getCategory() {
         return category;
