@@ -23,6 +23,7 @@ public interface UserService {
 //    @POST("get/tv-shows")
 //    Call<UserProfile> getTvShows(@Header("Authorization") String BearerToken);
 
+
     @POST("tv-shows")
     Call<UserProfile> getUser(@Header("Authorization") String authHeader);
 }

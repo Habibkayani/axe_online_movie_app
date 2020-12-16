@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.axe.R;
-import com.google.android.exoplayer2.C;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Activities.Login;
+import Activities.MainActivity;
 import Adapter.TvShowsBannerMoviesPagerAdapter;
 import Adapter.TvShowsMainRecylerAdapter;
 import Model.LoginResponse;
@@ -37,19 +39,21 @@ import Model.UserProfile;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import Retrofit.ApiClient;
 import Retrofit.UserService;
+import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
+import Retrofit.ApiClient;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TvShowsFragment extends Fragment {
 
     TvShowsBannerMoviesPagerAdapter tvShowsBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager2;
+    String ACCESS_TOKEN;
+    public static final String URL="https://axetv.net/api/v2/get/tv-shows";
 
     List<TvShowsBannerMovies> tvShowsBannerMoviesList;
     NestedScrollView nestedScrollView;
@@ -82,18 +86,18 @@ public class TvShowsFragment extends Fragment {
 
         ////token
         UserSession userSession = new UserSession(getContext());
-        String token1 = userSession.GetKeyVlaue("access_token");
-        Log.d("Token",token1);
+        ACCESS_TOKEN= userSession.GetKeyVlaue("access_token");
+        Log.d("Token",ACCESS_TOKEN);
 
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .baseUrl("https://axetv.net/api/v2/")
 //                .build();
 //        UserService Client=retrofit.create(UserService.class);
-//        Call<UserProfile> responseBodyCall=Client.getTvShows("Bearer" +token1);
+//        Call<UserProfile> responseBodyCall=Client.getUser("Bearer" +ACCESS_TOKEN);
 //        responseBodyCall.enqueue(new Callback<UserProfile>() {
 //            @Override
-//            public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
+//            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
 //
 //                UserProfile UserResponse=response.body();
 //                Toast.makeText(getContext(),UserResponse.getCategory(),Toast.LENGTH_LONG).show();
@@ -104,11 +108,12 @@ public class TvShowsFragment extends Fragment {
 //                Log.d("Failed",t.toString());
 //            }
 //        });
+        //////////////////////////////////////////////////////////////////////////////////
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", " Bearer " + token1)
+                        .addHeader("Authorization", " Bearer " + ACCESS_TOKEN)
                         .build();
                 return chain.proceed(newRequest);
             }
@@ -120,7 +125,7 @@ public class TvShowsFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService Client = retrofit.create(UserService.class);
-        Call<UserProfile> responseBodyCall = Client.getUser("Bearer " + token1);
+        Call<UserProfile> responseBodyCall = Client.getUser("Bearer " + ACCESS_TOKEN);
         responseBodyCall.enqueue(new Callback<UserProfile>() {
             @Override
             public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
@@ -134,7 +139,82 @@ public class TvShowsFragment extends Fragment {
                 Toast.makeText(getContext(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        //////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////
+
+
+//        Call<UserProfile> loginResponseCall = ApiClient.getUserService().getUser("Bearer " + ACCESS_TOKEN);
+//       loginResponseCall.enqueue(new Callback<UserProfile>() {
+//           @Override
+//           public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
+//               Toast.makeText(getContext(), "GetDataSuccessful", Toast.LENGTH_LONG).show();
+//               UserProfile loginResponse = response.body();
+//               Log.d("Data",response.body().toString());
+//           }
+//
+//           @Override
+//           public void onFailure(Call<UserProfile> call, Throwable t) {
+//               Toast.makeText(getContext(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//           }
+//       });
+
+
+
+
+//                    String e=loginResponse.getData().getUser().getEmail();
+//                    String av=loginResponse.getData().getUser().getAvatar();
+//                    String n=loginResponse.getData().getUser().getName();
+//                    editor.putString(Name, n);
+//                    editor.putString(Avator, av);
+//                    editor.putString(Email, e);
+//                    editor.commit();
+
+                    //Log.d(("OnResponse",response));
+
+                    //Log.d("OnResponse", Token);
+
+              
+                
+
+
+
+
+        /////////////////////////////////////////////
+//        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+//                (Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Log.d("Response", response.toString());
+//                        Toast.makeText(getContext(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }, new Response.ErrorListener() {
+//
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        VolleyLog.d("Error", "Error: " + error.getMessage());
+//                        Toast.makeText(getContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//        }) {
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> headerMap = new HashMap<String, String>();
+//                headerMap.put("Content-Type", "application/json");
+//                headerMap.put("Authorization", "Bearer " + ACCESS_TOKEN);
+//                return headerMap;
+//            }
+//        };
+
+
+            //////////
         setupmoviesbanner();
         setupmoviestvshowsandhome();
     }
