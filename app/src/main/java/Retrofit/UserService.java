@@ -1,7 +1,5 @@
 package Retrofit;
 
-import com.google.gson.JsonObject;
-
 import Model.LoginRequest;
 import Model.LoginResponse;
 import Model.UserProfile;
@@ -31,7 +29,7 @@ public interface UserService {
     @FormUrlEncoded
     @POST("tv-shows")
     @Headers("Accept:  application/json")
-    Call<JsonObject> getUser(@Header("Authorization") String authHeader, @Field("start") int start,
-                             @Field("limit") int limit,
-                             @Field ("order_by") String order_by, @Field ("order") String order);
+    Call<UserProfile> getUser(@Header("Authorization") String authHeader, @Field("start") int start,
+                              @Field("limit") int limit,
+                              @Field ("order_by") String order_by, @Field ("order") String order);
 }

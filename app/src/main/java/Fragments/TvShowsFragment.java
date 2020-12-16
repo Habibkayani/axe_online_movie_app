@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.axe.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,6 +114,7 @@ public class TvShowsFragment extends Fragment {
             public Response intercept(Chain chain) throws IOException {
                 Request newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+
                         .build();
                 return chain.proceed(newRequest);
             }
@@ -127,17 +127,17 @@ public class TvShowsFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService Client = retrofit.create(UserService.class);
-        Call<JsonObject> responseBodyCall = Client.getUser("Bearer " + ACCESS_TOKEN,0,200,"created_at","asc");
-        responseBodyCall.enqueue(new Callback<JsonObject>() {
+        Call<UserProfile> responseBodyCall = Client.getUser("Bearer " + ACCESS_TOKEN,0,200,"created_at","asc");
+        responseBodyCall.enqueue(new Callback<UserProfile>() {
             @Override
-            public void onResponse(Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
-           //     UserProfile UserResponse = response.body();
-           //   Toast.makeText(getContext(),UserResponse.getCategory(), Toast.LENGTH_LONG).show();
-                Log.d("TAG",response.body().toString() )
+            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
+                UserProfile UserResponse = response.body();
+              Toast.makeText(getContext(),UserResponse.getCategory(), Toast.LENGTH_LONG).show();
+                Log.d("TAG",UserResponse.toString() )
   ;          }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<UserProfile> call, Throwable t) {
                 Toast.makeText(getContext(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
