@@ -3,36 +3,25 @@ package Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.axe.R;
-import com.google.gson.Gson;
 
 
 import android.widget.EditText;
 import android.widget.Toast;
 
-import Model.Data;
 import Model.LoginRequest;
 import Model.LoginResponse;
-import Model.UserProfile;
 import Retrofit.ApiClient;
-import SessionManager.Config;
 import SessionManager.UserSession;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import Retrofit.UserService;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 //import com.umairadil.androidlogin.models.LoginResponse;
 //import com.umairadil.androidlogin.restclient.RestClient;

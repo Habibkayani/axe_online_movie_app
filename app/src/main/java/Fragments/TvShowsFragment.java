@@ -1,6 +1,5 @@
 package Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,22 +18,24 @@ import android.widget.Toast;
 
 import com.example.axe.R;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import Activities.Login;
-import Activities.MainActivity;
 import Adapter.TvShowsBannerMoviesPagerAdapter;
 import Adapter.TvShowsMainRecylerAdapter;
-import Model.LoginResponse;
+import Model.PostTVShows;
 import Model.TvShowAllCategory;
 import Model.TvShowsBannerMovies;
 import Model.TvShowCategoryItem;
-import Model.UserProfile;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -45,7 +45,6 @@ import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
-import Retrofit.ApiClient;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TvShowsFragment extends Fragment {
@@ -53,7 +52,7 @@ public class TvShowsFragment extends Fragment {
     TvShowsBannerMoviesPagerAdapter tvShowsBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager2;
     String ACCESS_TOKEN;
-    public static final String URL="https://axetv.net/api/v2/get/tv-shows";
+
 
     List<TvShowsBannerMovies> tvShowsBannerMoviesList;
     NestedScrollView nestedScrollView;
@@ -113,13 +112,12 @@ public class TvShowsFragment extends Fragment {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
-
+                        .addHeader("Authorization","Bearer " + ACCESS_TOKEN)
                         .build();
                 return chain.proceed(newRequest);
             }
         }).build();
-
+       // Toast.makeText(getContext(),ACCESS_TOKEN, Toast.LENGTH_LONG).show();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
@@ -127,18 +125,26 @@ public class TvShowsFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService Client = retrofit.create(UserService.class);
-        Call<UserProfile> responseBodyCall = Client.getUser("Bearer " + ACCESS_TOKEN,0,200,"created_at","asc");
-        responseBodyCall.enqueue(new Callback<UserProfile>() {
+        Call<JsonArray> responseBodyCall = Client.getTvShows(0,200,"created_at","asc");
+        responseBodyCall.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
-                UserProfile UserResponse = response.body();
-              Toast.makeText(getContext(),UserResponse.getCategory(), Toast.LENGTH_LONG).show();
-                Log.d("TAG",UserResponse.toString() )
+            public void onResponse(Call<JsonArray> call, retrofit2.Response<JsonArray> response) {
+
+                String jsonString=  response.body().toString();
+                PostTVShows tvShows=new PostTVShows();
+                Gson gson=new Gson();
+                tvShows=gson.fromJson(jsonString,PostTVShows.class);
+//                Type collectionType = new TypeToken<List<JsonObject>>(){}.getType();
+//                List<JsonObject> lcs = (List<JsonObject>) new Gson()
+//                        .fromJson(String.valueOf(response.body()), collectionType);
+//             Toast.makeText(getContext(),lcs.toString(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", jsonString.toString());
   ;          }
 
             @Override
-            public void onFailure(Call<UserProfile> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 Toast.makeText(getContext(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", t.getLocalizedMessage().toString());
             }
         });
         //////////////////////////////////////////////////////////////////////////////////////////////////////

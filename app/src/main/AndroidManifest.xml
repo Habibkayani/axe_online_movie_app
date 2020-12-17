@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.axe">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AXE"
         android:usesCleartextTraffic="true">
-        <activity android:name="Activities.SearchAble"
-            android:theme="@style/Theme.ToolarSearchView"></activity>
-        <activity android:name="Activities.PlayerSettings">
+        <activity android:name="Activities.ExoPlayerActivity">
+
 
         </activity>
+        <activity
+            android:name="Activities.SearchAble"
+            android:theme="@style/Theme.ToolarSearchView" />
+        <activity android:name="Activities.PlayerSettings"></activity>
         <activity android:name="Activities.SeeMore" />
         <activity android:name="Activities.TvShowDetail">
             >
