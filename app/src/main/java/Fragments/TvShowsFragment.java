@@ -130,15 +130,15 @@ public class TvShowsFragment extends Fragment {
             @Override
             public void onResponse(Call<JsonArray> call, retrofit2.Response<JsonArray> response) {
 
-                String jsonString=  response.body().toString();
-                PostTVShows tvShows=new PostTVShows();
-                Gson gson=new Gson();
-                tvShows=gson.fromJson(jsonString,PostTVShows.class);
+         //       String jsonString=  response.body().toString();
+           //     PostTVShows tvShows=new PostTVShows();
+             // Gson gson=new Gson();
+                //tvShows=gson.fromJson(jsonString,PostTVShows.class);
 //                Type collectionType = new TypeToken<List<JsonObject>>(){}.getType();
 //                List<JsonObject> lcs = (List<JsonObject>) new Gson()
 //                        .fromJson(String.valueOf(response.body()), collectionType);
 //             Toast.makeText(getContext(),lcs.toString(), Toast.LENGTH_LONG).show();
-                Log.d("onResponse", jsonString.toString());
+                Log.d("onResponse",getCategory().toString());
   ;          }
 
             @Override

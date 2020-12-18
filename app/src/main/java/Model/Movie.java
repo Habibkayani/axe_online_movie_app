@@ -1,19 +1,40 @@
 package Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-public class Movie {
+public class
+Movie {
 
-
-    String title;
-    int id;
-    String rating;
-    String avatar;
-    int is_favourite;
-    String genre;
-    int is_viewed;
-    String is_premier;
-    List<lastepisode> last_added_episode =null;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+    @SerializedName("avatar")
+    @Expose
+    private String avatar;
+    @SerializedName("is_favourite")
+    @Expose
+    private Integer isFavourite;
+    @SerializedName("genre")
+    @Expose
+    private String genre;
+    @SerializedName("is_viewed")
+    @Expose
+    private Integer isViewed;
+    @SerializedName("is_premier")
+    @Expose
+    private String isPremier;
+    @SerializedName("last_added_episode")
+    @Expose
+    private LastAddedEpisode lastAddedEpisode;
 
     public String getTitle() {
         return title;
@@ -23,11 +44,11 @@ public class Movie {
         this.title = title;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,12 +68,12 @@ public class Movie {
         this.avatar = avatar;
     }
 
-    public int getIs_favourite() {
-        return is_favourite;
+    public Integer getIsFavourite() {
+        return isFavourite;
     }
 
-    public void setIs_favourite(int is_favourite) {
-        this.is_favourite = is_favourite;
+    public void setIsFavourite(Integer isFavourite) {
+        this.isFavourite = isFavourite;
     }
 
     public String getGenre() {
@@ -63,43 +84,55 @@ public class Movie {
         this.genre = genre;
     }
 
-    public int getIs_viewed() {
-        return is_viewed;
+    public Integer getIsViewed() {
+        return isViewed;
     }
 
-    public void setIs_viewed(int is_viewed) {
-        this.is_viewed = is_viewed;
+    public void setIsViewed(Integer isViewed) {
+        this.isViewed = isViewed;
     }
 
-    public String getIs_premier() {
-        return is_premier;
+    public String getIsPremier() {
+        return isPremier;
     }
 
-    public void setIs_premier(String is_premier) {
-        this.is_premier = is_premier;
+    public void setIsPremier(String isPremier) {
+        this.isPremier = isPremier;
     }
 
-    public List<lastepisode> getLast_added_episode() {
-        return last_added_episode;
+    public LastAddedEpisode getLastAddedEpisode() {
+        return lastAddedEpisode;
     }
 
-    public void setLast_added_episode(List<lastepisode> last_added_episode) {
-        this.last_added_episode = last_added_episode;
+    public void setLastAddedEpisode(LastAddedEpisode lastAddedEpisode) {
+        this.lastAddedEpisode = lastAddedEpisode;
     }
+
 }
-class lastepisode{
 
-    int id;
-    String title;
-    int episode_number;
-    int season_number;
-    String season_title;
+class LastAddedEpisode {
 
-    public int getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("episode_number")
+    @Expose
+    private String episodeNumber;
+    @SerializedName("season_number")
+    @Expose
+    private String seasonNumber;
+    @SerializedName("season_title")
+    @Expose
+    private String seasonTitle;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -111,27 +144,29 @@ class lastepisode{
         this.title = title;
     }
 
-    public int getEpisode_number() {
-        return episode_number;
+    public String getEpisodeNumber() {
+        return episodeNumber;
     }
 
-    public void setEpisode_number(int episode_number) {
-        this.episode_number = episode_number;
+    public void setEpisodeNumber(String episodeNumber) {
+        this.episodeNumber = episodeNumber;
     }
 
-    public int getSeason_number() {
-        return season_number;
+    public String getSeasonNumber() {
+        return seasonNumber;
     }
 
-    public void setSeason_number(int season_number) {
-        this.season_number = season_number;
+    public void setSeasonNumber(String seasonNumber) {
+        this.seasonNumber = seasonNumber;
     }
 
-    public String getSeason_title() {
-        return season_title;
+    public String getSeasonTitle() {
+        return seasonTitle;
     }
 
-    public void setSeason_title(String season_title) {
-        this.season_title = season_title;
+    public void setSeasonTitle(String seasonTitle) {
+        this.seasonTitle = seasonTitle;
     }
+
 }
+
