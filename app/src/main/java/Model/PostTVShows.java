@@ -3,6 +3,8 @@ package Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class PostTVShows {
@@ -13,7 +15,7 @@ public class PostTVShows {
     private String category;
     @SerializedName("movie")
     @Expose
-    private List<Movie> movie = null;
+    private List<Movie> movieList = null;
 
     public String getCategory() {
         return category;
@@ -23,11 +25,12 @@ public class PostTVShows {
         this.category = category;
     }
 
-    public List<Movie> getMovie() {
-        return movie;
+
+    public List<Movie> getMovieList() {
+        return movieList;
     }
 
-    public void setMovie(List<Movie> movie) {
-        this.movie = movie;
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 }

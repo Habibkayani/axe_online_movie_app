@@ -16,15 +16,16 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.SeeMore;
+import Model.Movie;
 import Model.MovieCategoryItem;
-import Model.TvShowAllCategory;
+import Model.PostTVShows;
 import Model.TvShowCategoryItem;
 
 public class TvShowsMainRecylerAdapter extends RecyclerView.Adapter<TvShowsMainRecylerAdapter.MainViewHolder> {
     Context context;
-    List<TvShowAllCategory> tvShowAllCategories;
+    List<PostTVShows> tvShowAllCategories;
 
-    public TvShowsMainRecylerAdapter(Context context, List<TvShowAllCategory> tvShowAllCategories) {
+    public TvShowsMainRecylerAdapter(Context context, List<PostTVShows> tvShowAllCategories) {
         this.context = context;
         this.tvShowAllCategories = tvShowAllCategories;
     }
@@ -37,13 +38,13 @@ public class TvShowsMainRecylerAdapter extends RecyclerView.Adapter<TvShowsMainR
 
     @Override
     public void onBindViewHolder(@NonNull TvShowsMainRecylerAdapter.MainViewHolder holder, int position) {
-        holder.CategoryName.setText(tvShowAllCategories.get(position).getCatagoryTitle());
-        setItemRecyler(holder.itemRecyler, tvShowAllCategories.get(position).getTvShowCategoryItemList());
+        holder.CategoryName.setText(tvShowAllCategories.get(position).getCategory());
+        setItemRecyler(holder.itemRecyler, tvShowAllCategories.get(position).getMovieList());
         holder.seeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(context, SeeMore.class);
-                i.putExtra("cata", tvShowAllCategories.get(position).getCatagoryTitle());
+                //i.putExtra("cata", tvShowAllCategories.get(position).getCatagoryTitle());
 
 //                Bundle bundle = new Bundle();
 //                bundle.putParcelableArrayList("StudentDetails", (ArrayList<? extends Parcelable>) allCategoryList.get(position).getCategoryItemList());
@@ -80,7 +81,7 @@ public class TvShowsMainRecylerAdapter extends RecyclerView.Adapter<TvShowsMainR
         }
     }
 
-    private void setItemRecyler(RecyclerView recyclerView, List<TvShowCategoryItem> homeCategoryItemList) {
+    private void setItemRecyler(RecyclerView recyclerView, List<Movie> homeCategoryItemList) {
         TvShowsItemRecylerViewAdapter homeItemRecylerViewAdapter = new TvShowsItemRecylerViewAdapter(context, homeCategoryItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(homeItemRecylerViewAdapter);

@@ -18,14 +18,14 @@ import java.util.List;
 
 import Activities.TvShowDetail;
 import Activities.VideoDetails;
-import Model.TvShowCategoryItem;
-import Model.TvShowCategoryItem;
+import Model.Movie;
+import Model.Movie;
 
 public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsItemRecylerViewAdapter.ItemViewHolder> {
     Context context;
-    List<TvShowCategoryItem> tvShowCategoryItems;
+    List<Movie> tvShowCategoryItems;
 
-    public TvShowsItemRecylerViewAdapter(Context context, List<TvShowCategoryItem> homeCategoryItemList) {
+    public TvShowsItemRecylerViewAdapter(Context context, List<Movie> homeCategoryItemList) {
         this.context = context;
         this.tvShowCategoryItems = homeCategoryItemList;
     }
@@ -39,17 +39,17 @@ public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsI
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Glide.with(context).load(tvShowCategoryItems.get(position).getImageUrl()).into(holder.itemimage);
-        holder.MovieName.setText(tvShowCategoryItems.get(position).getMovieName());
+        Glide.with(context).load(tvShowCategoryItems.get(position).getAvatar()).into(holder.itemimage);
+        holder.MovieName.setText(tvShowCategoryItems.get(position).getTitle());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(context, TvShowDetail.class);
-                i.putExtra("movieId", tvShowCategoryItems.get(position).getId());
-                i.putExtra("movieName", tvShowCategoryItems.get(position).getMovieName());
-                i.putExtra("movieImageUrl", tvShowCategoryItems.get(position).getImageUrl());
-                i.putExtra("movieFile", tvShowCategoryItems.get(position).getFileUrl());
-                context.startActivity(i);
+//                Intent i=new Intent(context, TvShowDetail.class);
+//                i.putExtra("movieId", tvShowCategoryItems.get(position).getId());
+//                i.putExtra("movieName", tvShowCategoryItems.get(position).getMovieName());
+//                i.putExtra("movieImageUrl", tvShowCategoryItems.get(position).getImageUrl());
+//                i.putExtra("movieFile", tvShowCategoryItems.get(position).getFileUrl());
+//                context.startActivity(i);
             }
         });
     }

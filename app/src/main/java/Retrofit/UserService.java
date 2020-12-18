@@ -11,6 +11,7 @@ import java.util.List;
 import Model.LoginRequest;
 import Model.LoginResponse;
 
+import Model.PostTVShows;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -34,7 +35,7 @@ public interface UserService {
     @Headers("Accept:  application/json")
     @FormUrlEncoded
     @POST("tv-shows")
-    Call<JsonArray> getTvShows(@Field("start") int start,
-                               @Field("limit") int limit,
-                               @Field ("order_by") String order_by, @Field ("order") String order);
+    Call<List<PostTVShows>> getTvShows(@Field("start") int start,
+                                       @Field("limit") int limit,
+                                       @Field ("order_by") String order_by, @Field ("order") String order);
 }
