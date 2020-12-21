@@ -73,7 +73,7 @@ tools:context="Activities.TvShowDetail"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/quicksand_medium"
-        android:text="7.8/10"
+
         android:textColor="@color/red"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -98,40 +98,26 @@ tools:context="Activities.TvShowDetail"
 
     <TextView
         android:id="@+id/tvgenres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/quicksand_medium"
-        android:text="Action/Drama/Comedy"
+        android:maxLines="1"
         android:textColor="@color/red"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_moviename1" />
 
-    <Button
-        android:id="@+id/tvplaybtn"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_red_rounded"
-        android:fontFamily="@font/quicksand_medium"
-        android:text="PlAY"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/tvtralier"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="30dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/bg_red_rounded"
@@ -140,22 +126,25 @@ tools:context="Activities.TvShowDetail"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/tvreport"
-        app:layout_constraintStart_toEndOf="@+id/tvplaybtn"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvgenres" />
 
     <Button
         android:id="@+id/tvreport"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/bg_red_rounded"
         android:fontFamily="@font/quicksand_bold"
         android:text="REPORT"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvtralier"
         app:layout_constraintTop_toBottomOf="@+id/tvgenres" />
 
     <TextView
@@ -164,14 +153,14 @@ tools:context="Activities.TvShowDetail"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:clickable="true"
         android:fontFamily="@font/quicksand_bold"
         android:text="Descripition"
         android:textColor="@color/red"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvplaybtn" />
+        app:layout_constraintTop_toBottomOf="@+id/tvtralier" />
 
     <TextView
         android:id="@+id/tvdescription"
@@ -185,7 +174,7 @@ tools:context="Activities.TvShowDetail"
         android:ems="10"
         android:fontFamily="@font/quicksand_medium"
         android:gravity="start|top"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+
         android:textColor="@color/white"
         android:textSize="12sp"
 

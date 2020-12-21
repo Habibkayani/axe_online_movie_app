@@ -15,13 +15,13 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Model.EpisodeItem;
+import Model.Episode;
 
 public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecylerViewAdapter.ItemViewHolder> {
     Context context;
-    List<EpisodeItem> categoryItemList;
+    List<Episode> categoryItemList;
 
-    public EpisodeRecylerViewAdapter(Context context, List<EpisodeItem> categoryItemList) {
+    public EpisodeRecylerViewAdapter(Context context, List<Episode> categoryItemList) {
         this.context = context;
         this.categoryItemList = categoryItemList;
     }
@@ -35,9 +35,9 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Glide.with(context).load(categoryItemList.get(position).getImageUrl()).into(holder.itemimage);
-        holder.EpisodeName.setText(categoryItemList.get(position).getEpisodeName());
-        holder.description.setText(categoryItemList.get(position).getEpisode_description());
+//        Glide.with(context).load(categoryItemList.get(position).getImageUrl()).into(holder.itemimage);
+//        holder.EpisodeName.setText(categoryItemList.get(position).getEpisodeName());
+//        holder.description.setText(categoryItemList.get(position).getEpisode_description());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

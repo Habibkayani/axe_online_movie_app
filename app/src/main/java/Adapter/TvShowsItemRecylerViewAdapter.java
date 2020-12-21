@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,21 @@ public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsI
             public void onClick(View v) {
 //                Intent i=new Intent(context, TvShowDetail.class);
 //                i.putExtra("movieId", tvShowCategoryItems.get(position).getId());
-//                i.putExtra("movieName", tvShowCategoryItems.get(position).getMovieName());
-//                i.putExtra("movieImageUrl", tvShowCategoryItems.get(position).getImageUrl());
-//                i.putExtra("movieFile", tvShowCategoryItems.get(position).getFileUrl());
+//                i.putExtra("movieName", tvShowCategoryItems.get(position).getTitle());
+//                i.putExtra("movieImageUrl", tvShowCategoryItems.get(position).getAvatar());
+//                i.putExtra("movieRating", tvShowCategoryItems.get(position).getRating());
+//
+//
+//
+//
 //                context.startActivity(i);
+
+                Movie userItem = tvShowCategoryItems.get(position);
+                Intent yourIntent = new Intent(context,TvShowDetail.class);
+                Bundle b = new Bundle();
+                b.putSerializable("user", userItem);
+                yourIntent.putExtras(b); //pass bundle to your intent
+                context.startActivity(yourIntent);
             }
         });
     }

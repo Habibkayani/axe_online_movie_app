@@ -3,10 +3,11 @@ package Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class
-Movie {
+Movie implements Serializable {
 
     @SerializedName("title")
     @Expose
@@ -34,7 +35,7 @@ Movie {
     private String isPremier;
     @SerializedName("last_added_episode")
     @Expose
-    private LastAddedEpisode lastAddedEpisode;
+    public LastAddedEpisode lastAddedEpisode;
 
     public String getTitle() {
         return title;
@@ -110,23 +111,23 @@ Movie {
 
 }
 
-class LastAddedEpisode {
+class LastAddedEpisode implements Serializable{
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    public Integer id;
     @SerializedName("title")
     @Expose
-    private String title;
+    public String title;
     @SerializedName("episode_number")
     @Expose
-    private String episodeNumber;
+    public String episodeNumber;
     @SerializedName("season_number")
     @Expose
-    private String seasonNumber;
+    public String seasonNumber;
     @SerializedName("season_title")
     @Expose
-    private String seasonTitle;
+    public String seasonTitle;
 
     public Integer getId() {
         return id;

@@ -18,7 +18,6 @@ import java.util.List;
 import Activities.SeeMore;
 import Model.MovieAllCategory;
 import Model.MovieCategoryItem;
-import Model.TvShowCategoryItem;
 
 public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRecylerAdapter.MainViewHolder> {
     Context context;
