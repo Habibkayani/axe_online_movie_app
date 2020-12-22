@@ -9,14 +9,14 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
 
-   android:background="@drawable/layout_boarder"
+    android:background="@drawable/layout_boarder_header"
    >
 
 
     <ImageView
         android:id="@+id/episodeimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,33 +24,43 @@
         app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="VectorDrawableCompat" />
 
-
     <TextView
-        android:id="@+id/episodename"
+        android:id="@+id/episodename1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
+        android:text="Episode :"
         android:fontFamily="@font/quicksand_bold"
-        android:text="Episode 1"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/episodeimage"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
+        android:id="@+id/episodename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/quicksand_bold"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/episodename1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginRight="100dp" />
+
+    <TextView
         android:id="@+id/episodedescription"
-        android:layout_width="250dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/quicksand_medium"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -45,6 +45,7 @@ public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsI
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                Intent i=new Intent(context, TvShowDetail.class);
 //                i.putExtra("movieId", tvShowCategoryItems.get(position).getId());
 //                i.putExtra("movieName", tvShowCategoryItems.get(position).getTitle());

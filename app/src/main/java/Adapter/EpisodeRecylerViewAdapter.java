@@ -35,9 +35,9 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-//        Glide.with(context).load(categoryItemList.get(position).getImageUrl()).into(holder.itemimage);
-//        holder.EpisodeName.setText(categoryItemList.get(position).getEpisodeName());
-//        holder.description.setText(categoryItemList.get(position).getEpisode_description());
+        Glide.with(context).load(categoryItemList.get(position).getAvatar()).into(holder.itemimage);
+        holder.EpisodeNumber.setText(String.valueOf(categoryItemList.get(position).getEpisodeNumber()));
+        holder.EpisodeName.setText(categoryItemList.get(position).getName());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,14 +59,14 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
     public static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
         ImageView itemimage;
-        TextView EpisodeName,description;
+        TextView EpisodeNumber,EpisodeName;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemimage=itemView.findViewById(R.id.episodeimage);
-            EpisodeName=itemView.findViewById(R.id.episodename);
-            description=itemView.findViewById(R.id.episodedescription);
+            EpisodeNumber=itemView.findViewById(R.id.episodename);
+            EpisodeName=itemView.findViewById(R.id.episodedescription);
         }
     }
 }

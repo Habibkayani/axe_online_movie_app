@@ -1,7 +1,10 @@
 package Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class TvShowsCast {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class TvShowsCast{
 
     @SerializedName("id")
     @Expose
@@ -47,4 +50,5 @@ public class TvShowsCast {
     public void setImage(String image) {
         this.image = image;
     }
+
 }
