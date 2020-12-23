@@ -3,6 +3,9 @@
     package="com.example.axe">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -12,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AXE"
         android:usesCleartextTraffic="true">
-        <activity android:name="Activities.ExoPlayerActivity">
-
-
-        </activity>
+        <activity android:name="Activities.Exo_Player" android:configChanges="keyboardHidden" android:screenOrientation="landscape"></activity>
+        <activity android:name="Activities.ExoPlayerActivity"></activity>
         <activity
             android:name="Activities.SearchAble"
             android:theme="@style/Theme.ToolarSearchView" />
-        <activity android:name="Activities.PlayerSettings"></activity>
+        <activity android:name="Activities.PlayerSettings" />
         <activity android:name="Activities.SeeMore" />
         <activity android:name="Activities.TvShowDetail">
             >

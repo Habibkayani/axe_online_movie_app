@@ -36,7 +36,7 @@ public class TvShowCastAdapter extends RecyclerView.Adapter<TvShowCastAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(moviesCastList.get(position).getImage()).into(holder.image);
+        Glide.with(context).load(moviesCastList.get(position).getImage()).placeholder(R.drawable.loading).into(holder.image);
     }
 
     @Override

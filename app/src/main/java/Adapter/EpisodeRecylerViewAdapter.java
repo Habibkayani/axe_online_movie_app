@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.axe.R;
 
 import java.util.List;
 
+import Activities.Exo_Player;
 import Model.Episode;
 
 public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecylerViewAdapter.ItemViewHolder> {
@@ -38,15 +40,15 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
         Glide.with(context).load(categoryItemList.get(position).getAvatar()).into(holder.itemimage);
         holder.EpisodeNumber.setText(String.valueOf(categoryItemList.get(position).getEpisodeNumber()));
         holder.EpisodeName.setText(categoryItemList.get(position).getName());
-        holder.itemimage.setOnClickListener(new View.OnClickListener() {
+        holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i=new Intent(context, VideoDetails.class);
-//                i.putExtra("movieId",categoryItemList.get(position).getId());
+           Intent i=new Intent(context, Exo_Player.class);
+                i.putExtra("link",categoryItemList.get(position).getLink());
 //                i.putExtra("movieName",categoryItemList.get(position).getMovieName());
 //                i.putExtra("movieImageUrl",categoryItemList.get(position).getImageUrl());
 //                i.putExtra("movieFile",categoryItemList.get(position).getFileUrl());
-//                context.startActivity(i);
+              context.startActivity(i);
             }
         });
     }
@@ -58,8 +60,9 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
 
     public static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView itemimage;
+        ImageView itemimage,play;
         TextView EpisodeNumber,EpisodeName;
+
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +70,7 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
             itemimage=itemView.findViewById(R.id.episodeimage);
             EpisodeNumber=itemView.findViewById(R.id.episodename);
             EpisodeName=itemView.findViewById(R.id.episodedescription);
+            play=itemView.findViewById(R.id.playyyyy);
         }
     }
 }
