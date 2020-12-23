@@ -265,7 +265,7 @@ tools:context="Activities.TvShowDetail"
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="110dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
@@ -279,13 +279,12 @@ tools:context="Activities.TvShowDetail"
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/showseasonspinner"
-            android:layout_width="match_parent"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-         android:textAlignment="center"
-            android:entries="@array/Spinner_Item"
+            android:textAlignment="center"
             android:spinnerMode="dropdown"
-
-            />
+            android:popupElevation="5dp"
+            android:gravity="center_horizontal" />
 
 
     </RelativeLayout>
