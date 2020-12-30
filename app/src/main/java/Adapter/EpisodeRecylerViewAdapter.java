@@ -18,6 +18,7 @@ import java.util.List;
 
 import Activities.Exo_Player;
 import Model.Episode;
+import player.PlayerActivity;
 
 public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecylerViewAdapter.ItemViewHolder> {
     Context context;
@@ -43,7 +44,7 @@ public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecyl
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           Intent i=new Intent(context, Exo_Player.class);
+           Intent i=new Intent(context, PlayerActivity.class);
                 i.putExtra("link",categoryItemList.get(position).getLink());
 //                i.putExtra("movieName",categoryItemList.get(position).getMovieName());
 //                i.putExtra("movieImageUrl",categoryItemList.get(position).getImageUrl());

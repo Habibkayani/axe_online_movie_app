@@ -247,10 +247,10 @@ public class Exo_Player extends AppCompatActivity {
 
         BandwidthMeter bandwidthMeter=  new DefaultBandwidthMeter();
 
-        TrackSelector trackSelector= new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+//        TrackSelector trackSelector= new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
 
 
-        simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(Exo_Player.this,trackSelector,loadControl);
+//        simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(Exo_Player.this,trackSelector,loadControl);
 
 
         DefaultHttpDataSourceFactory factory= new DefaultHttpDataSourceFactory("exoplayer_video");

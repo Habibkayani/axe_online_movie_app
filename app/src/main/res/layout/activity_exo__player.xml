@@ -21,7 +21,6 @@
         app:rewind_increment="10000"
         app:fastforward_increment="10000"
         app:show_timeout="5000"
-        app:player_layout_id="@layout/exo_simple_player_view"
         app:controller_layout_id="@layout/exo_playback_control"
         app:use_controller="true"/>
     <ProgressBar
