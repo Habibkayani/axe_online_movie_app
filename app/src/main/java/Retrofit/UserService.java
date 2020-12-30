@@ -5,6 +5,7 @@ import java.util.List;
 import Model.LoginRequest;
 import Model.LoginResponse;
 
+import Model.PostMovies;
 import Model.PostTVShows;
 import Model.ModelTvShowDetail;
 import retrofit2.Call;
@@ -37,4 +38,10 @@ public interface UserService {
 
     @GET("{id}")
     Call<ModelTvShowDetail> getTvShowDetail(@Path("id") int id);
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+
+    @POST("articles")
+    Call<List<PostMovies>> getMovies(@Field ("order_by") String order_by, @Field ("order") String order);
 }

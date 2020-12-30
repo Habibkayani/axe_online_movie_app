@@ -170,4 +170,3 @@ class LastAddedEpisode implements Serializable{
     }
 
 }
-

@@ -34,7 +34,8 @@ CastMoviesAdapter castMoviesAdapter;
     List<SimilarMovie> simlarmovieList;
     String mName,mImage,mId,mFileUrl;
     ImageView movieImage,back;
-    TextView moviename;
+    TextView moviename, rating, genere;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +43,7 @@ CastMoviesAdapter castMoviesAdapter;
         movieImage=findViewById(R.id.tv_detail_image1);
         moviename=findViewById(R.id.tv_detail_moviename1);
         back=findViewById(R.id.tv_back);
-        mId=getIntent().getStringExtra("movieId");
-        mName=getIntent().getStringExtra("movieName");
-        mImage=getIntent().getStringExtra("movieImageUrl");
-        mFileUrl=getIntent().getStringExtra("movieFile");
+
         //set data layout
         Glide.with(this).load(mImage).into(movieImage);
         moviename.setText(mName);

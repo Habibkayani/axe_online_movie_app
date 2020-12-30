@@ -18,8 +18,6 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.TvShowDetail;
-import Activities.VideoDetails;
-import Model.Movie;
 import Model.Movie;
 
 public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsItemRecylerViewAdapter.ItemViewHolder> {

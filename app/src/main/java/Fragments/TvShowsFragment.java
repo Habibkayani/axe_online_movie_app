@@ -84,25 +84,7 @@ public class TvShowsFragment extends Fragment {
 
 
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .baseUrl("https://axetv.net/api/v2/")
-//                .build();
-//        UserService Client=retrofit.create(UserService.class);
-//        Call<UserProfile> responseBodyCall=Client.getUser("Bearer" +ACCESS_TOKEN);
-//        responseBodyCall.enqueue(new Callback<UserProfile>() {
-//            @Override
-//            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
-//
-//                UserProfile UserResponse=response.body();
-//                Toast.makeText(getContext(),UserResponse.getCategory(),Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserProfile> call, Throwable t) {
-//                Log.d("Failed",t.toString());
-//            }
-//        });
+
         //////////////////////////////////////////////////////////////////////////////////
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override

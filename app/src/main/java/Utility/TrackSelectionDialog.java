@@ -339,13 +339,13 @@ public final class TrackSelectionDialog extends DialogFragment {
             trackSelectionView.setShowDisableOption(true);
             trackSelectionView.setAllowMultipleOverrides(allowMultipleOverrides);
             trackSelectionView.setAllowAdaptiveSelections(allowAdaptiveSelections);
-            trackSelectionView.init(
-                    mappedTrackInfo,
-                    rendererIndex,
-                    isDisabled,
-                    overrides,
-                    /* trackFormatComparator= */ null,
-                    /* listener= */ this);
+//            trackSelectionView.init(
+//                    mappedTrackInfo,
+//                    rendererIndex,
+//                    isDisabled,
+//                    overrides,
+//                    /* trackFormatComparator= */ null,
+//                    /* listener= */ this);
             return rootView;
         }
 

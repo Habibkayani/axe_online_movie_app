@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,19 @@ import com.example.axe.R;
 
 import java.util.List;
 
+import Activities.TvShowDetail;
 import Activities.VideoDetails;
-import Model.MovieCategoryItem;
-import Model.MovieCategoryItem;
+import Model.Movie;
+import Model.Movie2;
 
 public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemRecylerViewAdapter.ItemViewHolder> {
     Context context;
-    List<MovieCategoryItem> movieCategoryItems;
+    List<Movie2> movie2CategoryItems;
 
 
-    public MovieItemRecylerViewAdapter(Context context, List<MovieCategoryItem> homeCategoryItemList) {
+    public MovieItemRecylerViewAdapter(Context context, List<Movie2> homeCategoryItemList) {
         this.context = context;
-        this.movieCategoryItems = homeCategoryItemList;
+        this.movie2CategoryItems = homeCategoryItemList;
     }
 
 
@@ -39,24 +41,30 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Glide.with(context).load(movieCategoryItems.get(position).getImageUrl()).into(holder.itemimage);
-        holder.MovieName.setText(movieCategoryItems.get(position).getMovieName());
+        Glide.with(context).load(movie2CategoryItems.get(position).getAvatar()).into(holder.itemimage);
+        holder.MovieName.setText(movie2CategoryItems.get(position).getTitle());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(context, VideoDetails.class);
-                i.putExtra("movieId", movieCategoryItems.get(position).getId());
-                i.putExtra("movieName", movieCategoryItems.get(position).getMovieName());
-                i.putExtra("movieImageUrl", movieCategoryItems.get(position).getImageUrl());
-                i.putExtra("movieFile", movieCategoryItems.get(position).getFileUrl());
-                context.startActivity(i);
+//                Intent i=new Intent(context, VideoDetails.class);
+//                i.putExtra("movieId", movieCategoryItems.get(position).getId());
+//                i.putExtra("movieName", movieCategoryItems.get(position).getMovieName());
+//                i.putExtra("movieImageUrl", movieCategoryItems.get(position).getImageUrl());
+//                i.putExtra("movieFile", movieCategoryItems.get(position).getFileUrl());
+//                context.startActivity(i);
+                Movie2 userItem = movie2CategoryItems.get(position);
+                Intent yourIntent = new Intent(context, VideoDetails.class);
+                Bundle b = new Bundle();
+                b.putSerializable("user", userItem);
+                yourIntent.putExtras(b); //pass bundle to your intent
+                context.startActivity(yourIntent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return movieCategoryItems.size();
+        return movie2CategoryItems.size();
     }
 
     public static final class ItemViewHolder extends RecyclerView.ViewHolder {

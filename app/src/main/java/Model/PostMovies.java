@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PostTVShows {
+public class PostMovies {
 
 
     @SerializedName("category")
@@ -13,7 +13,7 @@ public class PostTVShows {
     private String category;
     @SerializedName("movie")
     @Expose
-    private List<Movie> movieList = null;
+    private List<Movie2> movie2 = null;
 
     public String getCategory() {
         return category;
@@ -23,12 +23,11 @@ public class PostTVShows {
         this.category = category;
     }
 
-
-    public List<Movie> getMovieList() {
-        return movieList;
+    public List<Movie2> getMovie2() {
+        return movie2;
     }
 
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
+    public void setMovie2(List<Movie2> movie2) {
+        this.movie2 = movie2;
     }
 }

@@ -16,14 +16,14 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.SeeMore;
-import Model.MovieAllCategory;
-import Model.MovieCategoryItem;
+import Model.Movie2;
+import Model.PostMovies;
 
 public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRecylerAdapter.MainViewHolder> {
     Context context;
-    List<MovieAllCategory> movieAllCategoryList;
+    List<PostMovies> movieAllCategoryList;
 
-    public MoviesMainRecylerAdapter(Context context, List<MovieAllCategory> homeAllCategoryList) {
+    public MoviesMainRecylerAdapter(Context context, List<PostMovies> homeAllCategoryList) {
         this.context = context;
         this.movieAllCategoryList = homeAllCategoryList;
     }
@@ -36,13 +36,13 @@ public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRec
 
     @Override
     public void onBindViewHolder(@NonNull MoviesMainRecylerAdapter.MainViewHolder holder, int position) {
-        holder.CategoryName.setText( movieAllCategoryList.get(position).getCatagoryTitle());
-        setItemRecyler(holder.itemRecyler,  movieAllCategoryList.get(position).getMovieCategoryItemList());
+        holder.CategoryName.setText( movieAllCategoryList.get(position).getCategory());
+        setItemRecyler(holder.itemRecyler,  movieAllCategoryList.get(position).getMovie2());
         holder.seeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(context, SeeMore.class);
-                i.putExtra("cata",  movieAllCategoryList.get(position).getCatagoryTitle());
+                i.putExtra("cata",  movieAllCategoryList.get(position).getCategory());
 
 //                Bundle bundle = new Bundle();
 //                bundle.putParcelableArrayList("StudentDetails", (ArrayList<? extends Parcelable>) allCategoryList.get(position).getCategoryItemList());
@@ -79,7 +79,7 @@ public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRec
         }
     }
 
-    private void setItemRecyler(RecyclerView recyclerView, List<MovieCategoryItem> homeCategoryItemList) {
+    private void setItemRecyler(RecyclerView recyclerView, List<Movie2> homeCategoryItemList) {
        MovieItemRecylerViewAdapter homeItemRecylerViewAdapter = new  MovieItemRecylerViewAdapter(context, homeCategoryItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(homeItemRecylerViewAdapter);

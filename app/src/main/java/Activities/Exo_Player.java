@@ -245,9 +245,11 @@ public class Exo_Player extends AppCompatActivity {
 
         LoadControl loadControl= new DefaultLoadControl();
 
-        BandwidthMeter bandwidthMeter1=new DefaultBandwidthMeter();
+        BandwidthMeter bandwidthMeter=  new DefaultBandwidthMeter();
 
-        TrackSelector trackSelector= new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter1));
+        TrackSelector trackSelector= new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+
+
         simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(Exo_Player.this,trackSelector,loadControl);
 
 
