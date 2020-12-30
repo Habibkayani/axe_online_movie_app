@@ -11,12 +11,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AXE"
         android:usesCleartextTraffic="true">
-        <activity android:name="Activities.Exo_Player" android:configChanges="keyboardHidden" android:screenOrientation="landscape"></activity>
-        <activity android:name="Activities.ExoPlayerActivity"></activity>
+        <activity android:name="Activities.Exo_Player" android:configChanges="orientation|screenSize|layoutDirection" ></activity>
         <activity
             android:name="Activities.SearchAble"
             android:theme="@style/Theme.ToolarSearchView" />

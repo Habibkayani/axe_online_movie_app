@@ -15,7 +15,7 @@
     /////
     <string name="facebook_app_id">826742930852687</string>
     <string name="fb_login_protocol_scheme">fb826742930852687</string>
-
+    <string name="track_selection_title">Select tracks</string>
 
     <string name="signIn">SIGN IN</string>
     <string name="user_name">USER NAME</string>

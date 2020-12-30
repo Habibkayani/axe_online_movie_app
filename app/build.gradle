@@ -58,8 +58,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
     implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.4'
+
 
     //retrofit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
