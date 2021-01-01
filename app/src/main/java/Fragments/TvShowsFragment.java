@@ -27,8 +27,8 @@ import java.util.TimerTask;
 
 import Adapter.TvShowsBannerMoviesPagerAdapter;
 import Adapter.TvShowsMainRecylerAdapter;
-import Model.PostTVShows;
-import Model.TvShowsBannerMovies;
+import Model.AllTvshows.PostTVShows;
+import Model.AllBanners.TvShowsBannerMovies;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -99,11 +99,11 @@ public class TvShowsFragment extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://axetv.net/api/v2/get/")
+                .baseUrl("https://axetv.net//api/smart-phone/v1/get/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService Client = retrofit.create(UserService.class);
-        Call<List<PostTVShows>> responseBodyCall = Client.getTvShows(0, 200, "created_at", "asc");
+        Call<List<PostTVShows>> responseBodyCall = Client.getTvShows( "created_at", "asc");
         responseBodyCall.enqueue(new Callback<List<PostTVShows>>() {
             @Override
             public void onResponse(Call<List<PostTVShows>> call, retrofit2.Response<List<PostTVShows>> response) {

@@ -1,4 +1,4 @@
-package Model;
+package Model.AllTvshows;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -48,9 +48,8 @@ public class ModelTvShowDetail{
     @SerializedName("seasons")
     @Expose
     private List<Season> seasons = null;
-    @SerializedName("last_watched")
-    @Expose
-    private List<Object> lastWatched = null;
+
+
 
     public Integer getId() {
         return id;
@@ -164,13 +163,6 @@ public class ModelTvShowDetail{
         this.seasons = seasons;
     }
 
-    public List<Object> getLastWatched() {
-        return lastWatched;
-    }
-
-    public void setLastWatched(List<Object> lastWatched) {
-        this.lastWatched = lastWatched;
-    }
 
 }
 

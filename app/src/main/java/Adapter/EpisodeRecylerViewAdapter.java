@@ -16,8 +16,7 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Activities.Exo_Player;
-import Model.Episode;
+import Model.AllTvshows.Episode;
 import player.PlayerActivity;
 
 public class EpisodeRecylerViewAdapter extends RecyclerView.Adapter<EpisodeRecylerViewAdapter.ItemViewHolder> {

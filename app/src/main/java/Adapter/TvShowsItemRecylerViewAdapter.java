@@ -18,7 +18,7 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.TvShowDetail;
-import Model.Movie;
+import Model.AllTvshows.Movie;
 
 public class TvShowsItemRecylerViewAdapter extends RecyclerView.Adapter<TvShowsItemRecylerViewAdapter.ItemViewHolder> {
     Context context;

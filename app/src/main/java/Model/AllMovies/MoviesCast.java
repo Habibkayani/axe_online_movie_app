@@ -1,14 +1,9 @@
-package Model;
+package Model.AllMovies;
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+        import com.google.gson.annotations.SerializedName;
 
-public class TvShowsCast{
+public class MoviesCast {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -18,14 +13,6 @@ public class TvShowsCast{
     @SerializedName("image")
     @Expose
     private String image;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

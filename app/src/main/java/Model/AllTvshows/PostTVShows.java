@@ -1,9 +1,11 @@
-package Model;
+package Model.AllTvshows;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import Model.AllMovies.Movie2;
 
 public class PostTVShows {
 

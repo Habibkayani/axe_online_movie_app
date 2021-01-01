@@ -15,8 +15,7 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Model.SimilarMovie;
-import Model.SimilarTvShows;
+import Model.AllTvshows.SimilarTvShows;
 
 
 public class SimilarTVShowsAdapter extends RecyclerView.Adapter<SimilarTVShowsAdapter.ViewHolder> {

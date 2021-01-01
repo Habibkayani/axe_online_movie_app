@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,18 +28,19 @@ import Adapter.EpisodeRecylerViewAdapter;
 import Adapter.SimilarTVShowsAdapter;
 import Adapter.TvShowCastAdapter;
 
-import Model.Episode;
-import Model.ModelTvShowDetail;
-import Model.Movie;
-import Model.Season;
-import Model.SimilarTvShows;
-import Model.TvShowsCast;
+import Model.AllTvshows.Episode;
+import Model.AllTvshows.ModelTvShowDetail;
+import Model.AllTvshows.Movie;
+import Model.AllTvshows.Season;
+import Model.AllTvshows.SimilarTvShows;
+import Model.AllTvshows.TvShowsCast;
 import Retrofit.UserService;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import player.PlayerActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -80,6 +82,9 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
     ////Spinner//////
     AppCompatSpinner colorspinner;
     ArrayAdapter adapter;
+    String trailerlink,report;
+    Button  Trailer,Report;
+
     //////////////////////
 
     @Override
@@ -109,6 +114,8 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         genere = findViewById(R.id.tvgenres);
         description = findViewById(R.id.tvdescription);
         back = findViewById(R.id.tv_back);
+        Trailer=findViewById(R.id.tvtralier);
+        Report=findViewById(R.id.tvreport);
 
 //        mId=getIntent().getStringExtra("movieId");
 //        mName=getIntent().getStringExtra("movieName");
@@ -119,6 +126,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         Movie user = (Movie) bundle.getSerializable("user");
 
         Integer Id = user.getId();
+
 //         String title=user.getTitle();
 //         String image=user.getAvatar();
 //         String genere=user.getGenre();
@@ -169,6 +177,8 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
                 Integer Favourite = response.body().getFavourite();
                 Object Director = response.body().getDirector();
                 String Genere = response.body().getGenre();
+                trailerlink=response.body().getTrailer();
+                Log.d("trailer",trailerlink);
 
                 seasonslist = response.body().getSeasons();
                 String spinner = null;
@@ -312,6 +322,21 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(i);
             }
         });
+        Trailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), PlayerActivity.class);
+                i.putExtra("tvshowtrailerlink",trailerlink);
+                startActivity(i);
+            }
+        });
+//        Report.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(i);
+//            }
+//        });
     }
 
     private void TVshowcast() {

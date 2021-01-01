@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,8 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Model.MoviesCast;
-import Model.SimilarMovie;
-import de.hdodenhof.circleimageview.CircleImageView;
+import Activities.VideoDetails;
+import Model.AllMovies.SimilarMovie;
 
 
 public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolder> {
@@ -31,6 +29,8 @@ public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdap
         this.moviesCastList = moviesCastList;
     }
 
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,8 +39,8 @@ public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(moviesCastList.get(position).getImageUrl()).into(holder.image);
-        holder.name.setText(moviesCastList.get(position).getMovieName());
+        Glide.with(context).load(moviesCastList.get(position).getAvatar()).into(holder.image);
+        holder.name.setText(moviesCastList.get(position).getTitle());
     }
 
     @Override

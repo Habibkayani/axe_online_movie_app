@@ -1,4 +1,4 @@
-package Model;
+package Model.AllTvshows;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -24,13 +24,6 @@ public class Episode {
     @SerializedName("viewed")
     @Expose
     private Integer viewed;
-    @SerializedName("language")
-    @Expose
-    private List<Object> language = null;
-    @SerializedName("player_time")
-    @Expose
-    private List<Object> playerTime = null;
-
     public Integer getId() {
         return id;
     }
@@ -79,20 +72,5 @@ public class Episode {
         this.viewed = viewed;
     }
 
-    public List<Object> getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(List<Object> language) {
-        this.language = language;
-    }
-
-    public List<Object> getPlayerTime() {
-        return playerTime;
-    }
-
-    public void setPlayerTime(List<Object> playerTime) {
-        this.playerTime = playerTime;
-    }
 
 }

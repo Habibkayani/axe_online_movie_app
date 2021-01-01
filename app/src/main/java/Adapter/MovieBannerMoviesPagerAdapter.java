@@ -16,7 +16,7 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.VideoDetails;
-import Model.MovieBannerMovies;
+import Model.AllBanners.MovieBannerMovies;
 
 public class MovieBannerMoviesPagerAdapter extends PagerAdapter {
     private static final String TAG = "TAG";

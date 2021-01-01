@@ -16,16 +16,18 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.SeeMore;
-import Model.Movie2;
-import Model.PostMovies;
+import Model.AllMovies.Movie2;
+import Model.AllMovies.PostMovies;
 
 public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRecylerAdapter.MainViewHolder> {
     Context context;
     List<PostMovies> movieAllCategoryList;
 
-    public MoviesMainRecylerAdapter(Context context, List<PostMovies> homeAllCategoryList) {
+
+
+    public MoviesMainRecylerAdapter(Context context, List<PostMovies> listofcatgeory) {
         this.context = context;
-        this.movieAllCategoryList = homeAllCategoryList;
+        this.movieAllCategoryList = listofcatgeory;
     }
 
     @NonNull
@@ -36,6 +38,7 @@ public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRec
 
     @Override
     public void onBindViewHolder(@NonNull MoviesMainRecylerAdapter.MainViewHolder holder, int position) {
+
         holder.CategoryName.setText( movieAllCategoryList.get(position).getCategory());
         setItemRecyler(holder.itemRecyler,  movieAllCategoryList.get(position).getMovie2());
         holder.seeMore.setOnClickListener(new View.OnClickListener() {

@@ -15,8 +15,8 @@ import com.example.axe.R;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import Model.LoginRequest;
-import Model.LoginResponse;
+import Model.AllLogin.LoginRequest;
+import Model.AllLogin.LoginResponse;
 import Retrofit.ApiClient;
 import SessionManager.UserSession;
 import retrofit2.Call;

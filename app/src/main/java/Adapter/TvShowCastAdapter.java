@@ -13,8 +13,7 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Model.MoviesCast;
-import Model.TvShowsCast;
+import Model.AllTvshows.TvShowsCast;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 

@@ -19,8 +19,9 @@ import java.util.List;
 
 import Activities.TvShowDetail;
 import Activities.VideoDetails;
-import Model.Movie;
-import Model.Movie2;
+import Model.AllMovies.Movie2;
+import Model.AllTvshows.ModelTvShowDetail;
+import Model.AllTvshows.Movie;
 
 public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemRecylerViewAdapter.ItemViewHolder> {
     Context context;
@@ -31,6 +32,7 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
         this.context = context;
         this.movie2CategoryItems = homeCategoryItemList;
     }
+
 
 
     @NonNull
@@ -58,6 +60,7 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
                 b.putSerializable("user", userItem);
                 yourIntent.putExtras(b); //pass bundle to your intent
                 context.startActivity(yourIntent);
+
             }
         });
     }

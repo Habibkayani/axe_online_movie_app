@@ -1,10 +1,10 @@
-package Model;
+package Model.AllTvshows;
 
-public class SimilarMovie {
+public class SimilarTvShows {
     String MovieName;
     String ImageUrl;
 
-    public SimilarMovie(String movieName, String imageUrl) {
+    public SimilarTvShows(String movieName, String imageUrl) {
         MovieName = movieName;
         ImageUrl = imageUrl;
     }

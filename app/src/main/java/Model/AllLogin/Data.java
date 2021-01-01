@@ -1,8 +1,6 @@
-package Model;
+package Model.AllLogin;
 
 import android.content.Context;
-
-import SessionManager.UserSession;
 
 public class Data {
     Context context;

@@ -1,4 +1,4 @@
-package Model;
+package Model.AllLogin;
 
 public class LoginRequest {
     private String email;

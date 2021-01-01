@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +13,8 @@ import com.example.axe.R;
 
 import java.util.List;
 
-import Model.MoviesCast;
+import Activities.VideoDetails;
+import Model.AllMovies.MoviesCast;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -36,7 +36,7 @@ public class CastMoviesAdapter extends RecyclerView.Adapter<CastMoviesAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(moviesCastList.get(position).getImageUrl()).into(holder.image);
+        Glide.with(context).load(moviesCastList.get(position).getImage()).placeholder(R.drawable.loading).into(holder.image);
     }
 
     @Override

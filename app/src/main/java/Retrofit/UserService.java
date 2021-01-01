@@ -2,12 +2,13 @@ package Retrofit;
 
 import java.util.List;
 
-import Model.LoginRequest;
-import Model.LoginResponse;
+import Model.AllLogin.LoginRequest;
+import Model.AllLogin.LoginResponse;
 
-import Model.PostMovies;
-import Model.PostTVShows;
-import Model.ModelTvShowDetail;
+import Model.AllMovies.Main;
+import Model.AllMovies.PostMovies;
+import Model.AllTvshows.PostTVShows;
+import Model.AllTvshows.ModelTvShowDetail;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -32,16 +33,17 @@ public interface UserService {
     @Headers("Accept:  application/json")
     @FormUrlEncoded
     @POST("tv-shows")
-    Call<List<PostTVShows>> getTvShows(@Field("start") int start,
-                                       @Field("limit") int limit,
-                                       @Field ("order_by") String order_by, @Field ("order") String order);
+    Call<List<PostTVShows>> getTvShows(@Field ("order_by") String order_by, @Field ("order") String order);
 
     @GET("{id}")
     Call<ModelTvShowDetail> getTvShowDetail(@Path("id") int id);
 
     @Headers("Accept:  application/json")
     @FormUrlEncoded
-
     @POST("articles")
     Call<List<PostMovies>> getMovies(@Field ("order_by") String order_by, @Field ("order") String order);
+
+    @Headers("Accept:  application/json")
+    @GET("{id}")
+    Call<Main> getMoviesDetail(@Path("id") int id);
 }

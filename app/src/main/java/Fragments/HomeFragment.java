@@ -26,7 +26,7 @@ import java.util.TimerTask;
 import Adapter.HomeBannerMoviesPagerAdapter;
 import Adapter.HomeMainRecylerAdapter;
 import Model.HomeAllCategory;
-import Model.HomeBannerMovies;
+import Model.AllBanners.HomeBannerMovies;
 import Model.HomeCategoryItem;
 
 public class HomeFragment extends Fragment {
