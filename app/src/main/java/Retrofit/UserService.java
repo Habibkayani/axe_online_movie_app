@@ -9,6 +9,7 @@ import Model.AllMovies.Main;
 import Model.AllMovies.PostMovies;
 import Model.AllTvshows.PostTVShows;
 import Model.AllTvshows.ModelTvShowDetail;
+import Model.Search.Search;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -17,6 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserService {
 
@@ -46,4 +48,9 @@ public interface UserService {
     @Headers("Accept:  application/json")
     @GET("{id}")
     Call<Main> getMoviesDetail(@Path("id") int id);
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("articles")
+    Call<Search> getSearch(@Field("title") String title);
 }

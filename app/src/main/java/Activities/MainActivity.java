@@ -11,11 +11,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.axe.R;
@@ -32,6 +34,8 @@ import Model.AllBanners.HomeBannerMovies;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ViewPager pager;
+
+    int position;
 
 
     TextView navtext;
@@ -65,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-navimage=findViewById(R.id.nav_image);
-navtext=findViewById(R.id.nav_text);
+       navimage=findViewById(R.id.nav_image);
+       navtext=findViewById(R.id.nav_text);
 
 
 
@@ -74,6 +78,9 @@ navtext=findViewById(R.id.nav_text);
 
 
         mTabLayout=findViewById(R.id.tabLayout);
+
+
+        //Log.d("postion", String.valueOf(position));
         Movies = findViewById(R.id.movies);
         TvShows = findViewById(R.id.tvshows);
          Home= findViewById(R.id.home);
@@ -83,6 +90,11 @@ navtext=findViewById(R.id.nav_text);
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pager.setCurrentItem(tab.getPosition());
+                 position = tab.getPosition();
+               // Log.d("postion", String.valueOf(position));
+               // Toast.makeText(getApplicationContext(),position,Toast.LENGTH_LONG).show();
+
+
             }
 
             @Override
@@ -328,6 +340,7 @@ navtext=findViewById(R.id.nav_text);
             switch (item.getItemId()) {
                 case R.id.action_search:
                     Intent i = new Intent(MainActivity.this, SearchAble.class);
+                    i.putExtra("position",String.valueOf(position));
                     startActivity(i);
                     break;
                 default:
