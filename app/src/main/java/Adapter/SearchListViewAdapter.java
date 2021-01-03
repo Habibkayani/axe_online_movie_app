@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,10 @@ public class SearchListViewAdapter extends RecyclerView.Adapter<SearchListViewAd
         holder.rating.setText(moviesCastList.get(position).getRating());
 
 
+
+
+
+
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,12 +74,14 @@ public class SearchListViewAdapter extends RecyclerView.Adapter<SearchListViewAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name,rating;
+        ProgressBar progressBar;
         public ViewHolder(@NonNull View view) {
             super(view);
             image= (ImageView) view.findViewById(R.id.searchimage);
             rating = (TextView) view.findViewById(R.id.searchratingrating);
 
             name= (TextView) view.findViewById(R.id.searchtitle);
+            progressBar=view.findViewById(R.id.progressBarxxxx);
         }
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class VideoDetails extends AppCompatActivity {
     String ACCESS_TOKEN;
     List<MoviesCast> moviesCasts;
     Integer Id;
+    ProgressBar progressBar;
     List<SimilarMovie> similarMovies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class VideoDetails extends AppCompatActivity {
         movieImage=findViewById(R.id.tv_detail_image1);
         moviename=findViewById(R.id.tv_detail_moviename1);
         rating=findViewById(R.id.tvrating);
+        progressBar=findViewById(R.id.progressBar);
         genere=findViewById(R.id.tvgenres);
         tvdescription=findViewById(R.id.tvdescription);
         play=findViewById(R.id.tvplaybtn);
@@ -138,7 +141,6 @@ public class VideoDetails extends AppCompatActivity {
 
                     //Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_LONG).show();
                     Log.d("MovieData",response.body().getMessage());
-
 
 
                     mImage=response.body().getData().getBackground();

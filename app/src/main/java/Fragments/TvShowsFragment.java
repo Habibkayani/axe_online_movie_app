@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.axe.R;
@@ -42,6 +43,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TvShowsFragment extends Fragment {
 
+
+    ProgressBar progressBar;
     TvShowsBannerMoviesPagerAdapter tvShowsBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager2;
     String ACCESS_TOKEN;
@@ -51,6 +54,7 @@ public class TvShowsFragment extends Fragment {
     NestedScrollView nestedScrollView;
     RecyclerView TvShowmainrecyclerView;
     TvShowsMainRecylerAdapter tvShowsMainRecylerAdapter;
+
    // List<TvShowAllCategory> tvShowAllCategoryList;
     List<PostTVShows> listofcatgeory; ;
 
@@ -76,7 +80,7 @@ public class TvShowsFragment extends Fragment {
         categoryTab = view.findViewById(R.id.tabLayout);
         nestedScrollView = view.findViewById(R.id.nested_scroll);
         // appBarLayout = view.findViewById(R.id.appbar);
-
+progressBar=view.findViewById(R.id.tvshowprogressBar);
         ////token
         UserSession userSession = new UserSession(getContext());
         ACCESS_TOKEN = userSession.GetKeyVlaue("access_token");
@@ -163,6 +167,7 @@ public class TvShowsFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         TvShowmainrecyclerView.setLayoutManager(layoutManager);
        tvShowsMainRecylerAdapter = new TvShowsMainRecylerAdapter(getContext(), homeAllCategoryList);
+       progressBar.setVisibility(View.INVISIBLE);
         TvShowmainrecyclerView.setAdapter(tvShowsMainRecylerAdapter);
     }
 

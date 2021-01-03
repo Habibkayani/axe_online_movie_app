@@ -59,6 +59,16 @@ tools:context="Fragments.TvShowsFragment"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/tvshowprogressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_recyler2"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

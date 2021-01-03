@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.axe.R;
@@ -45,7 +46,7 @@ import Retrofit.UserService;
 public class MoviesFragment extends Fragment {
     MovieBannerMoviesPagerAdapter movieBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager1;
-
+ProgressBar progressBar;
     List<MovieBannerMovies> moviesHomeBannerMoviesList;
     NestedScrollView nestedScrollView;
     RecyclerView MoviemainrecyclerView;
@@ -67,6 +68,7 @@ public class MoviesFragment extends Fragment {
         tabIndicator = view.findViewById(R.id.tab_indicator1);
         categoryTab = view.findViewById(R.id.tabLayout);
         nestedScrollView = view.findViewById(R.id.nested_scroll);
+        progressBar=view.findViewById(R.id.movieprogressBar);
         // appBarLayout = view.findViewById(R.id.appbar);
 
 //        setupmoviesbanner();
@@ -123,6 +125,7 @@ public class MoviesFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         MoviemainrecyclerView.setLayoutManager(layoutManager);
         MovieMainRecylerAdapter = new MoviesMainRecylerAdapter(getContext(), listofcatgeory);
+        progressBar.setVisibility(View.INVISIBLE);
         MoviemainrecyclerView.setAdapter(MovieMainRecylerAdapter);
 
     }

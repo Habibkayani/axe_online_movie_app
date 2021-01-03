@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.axe.R;
@@ -51,6 +52,7 @@ public class SearchAble extends AppCompatActivity {
     String ACCESS_TOKEN;
     List<Body> bodyList;
     SearchListViewAdapter searchListViewAdapter;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class SearchAble extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         bodyList = new ArrayList<>();
+        progressBar=findViewById(R.id.progressBarxxxx);
 //        searchedit = findViewById(R.id.searchedittext);
 //        Searchfromlist = findViewById(R.id.searchinlistbtn);
 
@@ -134,6 +137,7 @@ public class SearchAble extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         searchListViewAdapter = new SearchListViewAdapter(this, bodyList);
+        progressBar.setVisibility(View.INVISIBLE);
         recyclerView.setAdapter(searchListViewAdapter);
 
     }
@@ -177,6 +181,7 @@ public class SearchAble extends AppCompatActivity {
 
 
                             if (response.isSuccessful()) {
+
                                 // Toast.makeText(getApplicationContext(),"Data Sucessfull integrate",Toast.LENGTH_LONG).show();
 
                                 bodyList = response.body().getBody();
