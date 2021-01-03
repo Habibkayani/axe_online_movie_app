@@ -1,6 +1,8 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.VideoDetails;
+import Model.AllMovies.Movie2;
 import Model.AllMovies.SimilarMovie;
 import Model.Search.Body;
 
@@ -43,6 +46,19 @@ public class SearchListViewAdapter extends RecyclerView.Adapter<SearchListViewAd
         Glide.with(context).load(moviesCastList.get(position).getImage()).placeholder(R.drawable.loading).into(holder.image);
         holder.name.setText(moviesCastList.get(position).getName());
         holder.rating.setText(moviesCastList.get(position).getRating());
+
+
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Body body = moviesCastList.get(position);
+                Intent yourIntent = new Intent(context, VideoDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("id", body);
+                yourIntent.putExtras(bundle); //pass bundle to your intent
+                context.startActivity(yourIntent);
+            }
+        });
     }
 
     @Override

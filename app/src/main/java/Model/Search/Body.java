@@ -1,9 +1,10 @@
 package Model.Search;
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Body {
+public class Body implements Serializable {
 
     @SerializedName("rating")
     @Expose
