@@ -190,6 +190,11 @@ public class HomeFragment extends Fragment {
         tabIndicator.setupWithViewPager(bannerMovieViewPager, true);
     }
 
+    public static void onBackPressed2()
+    {
+        //Pop Fragments off backstack and do your other checks
+    }
+
     class AutoSlider extends TimerTask {
         @Override
         public void run() {

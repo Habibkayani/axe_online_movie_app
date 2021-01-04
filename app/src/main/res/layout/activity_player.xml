@@ -30,24 +30,37 @@
         app:show_subtitle_button="true"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#88000000"
-        android:orientation="vertical">
+
+        android:orientation="vertical"
+      android:layout_gravity="bottom"
+      android:layout_marginBottom="55dp"
+        >
 
         <LinearLayout android:id="@+id/controls_root"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:visibility="gone">
+            android:gravity="right"
+            android:visibility="gone"
 
+            >
             <Button android:id="@+id/select_tracks_button"
                 android:layout_width="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="300dp"
                 android:background="@drawable/headphones"
+                android:visibility="gone"
+                android:enabled="false"/>
+
+            <ImageView android:id="@+id/fullscreen"
+                android:layout_width="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="300dp"
+                android:background="@drawable/ic_fullscreen"
                 android:enabled="false"/>
 
         </LinearLayout>

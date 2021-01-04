@@ -60,7 +60,7 @@ public class VideoDetails extends AppCompatActivity {
     String ACCESS_TOKEN;
     List<MoviesCast> moviesCasts;
     Integer Id;
-    ProgressBar progressBar;
+    ProgressBar progressBar,bar;
     List<SimilarMovie> similarMovies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class VideoDetails extends AppCompatActivity {
         moviename=findViewById(R.id.tv_detail_moviename1);
         rating=findViewById(R.id.tvrating);
         progressBar=findViewById(R.id.progressBar);
+        bar=findViewById(R.id.videoprogressBar);
         genere=findViewById(R.id.tvgenres);
         tvdescription=findViewById(R.id.tvdescription);
         play=findViewById(R.id.tvplaybtn);
@@ -78,6 +79,7 @@ public class VideoDetails extends AppCompatActivity {
         back=findViewById(R.id.tv_back);
         moviesCasts=new ArrayList<>();
         similarMovies=new ArrayList<>();
+        bar.setVisibility(View.VISIBLE);
         //set data layout
 
         listener();
@@ -269,6 +271,7 @@ public class VideoDetails extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         similarRecylerview.setLayoutManager(layoutManager);
         simlarMoviesAdapter = new SimilarMoviesAdapter(this,  similarMovies);
+        bar.setVisibility(View.INVISIBLE);
         similarRecylerview.setAdapter(simlarMoviesAdapter);
     }
 

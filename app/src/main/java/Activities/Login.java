@@ -13,6 +13,7 @@ import com.example.axe.R;
 
 
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import Model.AllLogin.LoginRequest;
@@ -33,6 +34,7 @@ public class Login extends AppCompatActivity {
     EditText emailfield, passwordfield;
    String token1;
    UserSession userSession;
+   ProgressBar loginbar;
 
 //    public static final String MyPREFERENCES = "MyPrefs" ;
 //    public static final String Name = "nameKey";
@@ -59,6 +61,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginbar.setVisibility(View.VISIBLE);
               doLogin();
 
             }
@@ -133,10 +136,11 @@ public class Login extends AppCompatActivity {
                                 Intent intent = new Intent(Login.this,MainActivity.class);
 
                                 startActivity(intent);
+                                loginbar.setVisibility(View.INVISIBLE);
 
 
                             }
-                        }, 700);
+                        }, 500);
 
                     } else if(response.body().getStatus()!= 200) {
                         LoginResponse loginResponse = response.body();
@@ -167,7 +171,7 @@ public class Login extends AppCompatActivity {
         emailfield = findViewById(R.id.emial_text_field_login);
         passwordfield = findViewById(R.id.text_field_Password_login);
 
-
+loginbar=findViewById(R.id.loginprogressBar);
 
 
 

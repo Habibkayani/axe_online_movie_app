@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
     List<Episode> episodeItemList2;
     List<Episode> episodeItemList3;
     List<Episode> episodeItemList4;
+    ProgressBar bar;
 
     RecyclerView TVShowcastRecylerview;
     TvShowCastAdapter castMoviesAdapter;
@@ -116,6 +118,8 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         back = findViewById(R.id.tv_back);
         Trailer=findViewById(R.id.tvtralier);
         Report=findViewById(R.id.tvreport);
+        bar=findViewById(R.id.tvprogressBar);
+        bar.setVisibility(View.VISIBLE);
 
 //        mId=getIntent().getStringExtra("movieId");
 //        mName=getIntent().getStringExtra("movieName");
@@ -178,6 +182,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
                 Object Director = response.body().getDirector();
                 String Genere = response.body().getGenre();
                 trailerlink=response.body().getTrailer();
+
                 Log.d("trailer",trailerlink);
 
                 seasonslist = response.body().getSeasons();
@@ -400,7 +405,9 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         EpisodeRecylerview.setLayoutManager(layoutManager);
         episodeRecylerViewAdapter = new EpisodeRecylerViewAdapter(this, episodeItemList);
+        bar.setVisibility(View.INVISIBLE);
         EpisodeRecylerview.setAdapter(episodeRecylerViewAdapter);
+
 
 
     }

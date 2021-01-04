@@ -170,6 +170,10 @@ progressBar=view.findViewById(R.id.tvshowprogressBar);
        progressBar.setVisibility(View.INVISIBLE);
         TvShowmainrecyclerView.setAdapter(tvShowsMainRecylerAdapter);
     }
+    public static void onBackPressed1()
+    {
+        //Pop Fragments off backstack and do your other checks
+    }
 
     private void setupmoviesbanner() {
 

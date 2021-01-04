@@ -18,6 +18,7 @@ package player;
 import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,13 +28,16 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.axe.R;
 import com.google.android.exoplayer2.C;
@@ -112,7 +116,8 @@ public class PlayerActivity extends AppCompatActivity
     private AdsLoader adsLoader;
     private Uri loadedAdTagUri;
     String TVVideoUrl, Tvshowtrailer, MovieTrailer, MovieVideoUrl;
-
+    ImageView fullscreenButton;
+     boolean fullscreen = false;
     // Activity lifecycle
 
     @Override
@@ -127,6 +132,51 @@ public class PlayerActivity extends AppCompatActivity
         debugRootView = findViewById(R.id.controls_root);
         selectTracksButton = findViewById(R.id.select_tracks_button);
         selectTracksButton.setOnClickListener(this);
+        fullscreenButton = findViewById(R.id.fullscreen);
+//        fullscreenButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (fullscreen) {
+//                    fullscreenButton.setImageDrawable(ContextCompat.getDrawable(PlayerActivity.this, R.drawable.ic_fullscreen_open));
+//
+//                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+//
+//                    if (getSupportActionBar() != null) {
+//                        getSupportActionBar().show();
+//                    }
+//
+//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//
+//                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) playerView.getLayoutParams();
+//                    params.width = params.MATCH_PARENT;
+//                    params.height = (int) (200 * getApplicationContext().getResources().getDisplayMetrics().density);
+//                    playerView.setLayoutParams(params);
+//
+//                    fullscreen = false;
+//                } else {
+//                    fullscreenButton.setImageDrawable(ContextCompat.getDrawable(PlayerActivity.this, R.drawable.ic_full_screen_close));
+//
+//                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN
+//                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//
+//                    if (getSupportActionBar() != null) {
+//                        getSupportActionBar().hide();
+//                    }
+//
+//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//
+//                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) playerView.getLayoutParams();
+//                    params.width = params.MATCH_PARENT;
+//                    params.height = params.MATCH_PARENT;
+//                    playerView.setLayoutParams(params);
+//
+//                    fullscreen = true;
+//                }
+//
+//            }
+//        });
+
 
         playerView = findViewById(R.id.player_view);
         playerView.setControllerVisibilityListener(this);
@@ -268,6 +318,8 @@ public class PlayerActivity extends AppCompatActivity
 
     protected void setContentView() {
         setContentView(R.layout.activity_player);
+
+
     }
 
     /**

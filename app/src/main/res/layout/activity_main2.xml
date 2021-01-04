@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F171E"
-    android:id="@+id/drawer_layout"
-
-    android:layout_gravity="center"
-    android:fitsSystemWindows="true"
+    android:id="@+id/main"
     tools:context="Activities.MainActivity">
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#0F171E"
+    android:fitsSystemWindows="true"
+  >
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/fragment_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#0F171E">
@@ -49,9 +53,9 @@
                 app:tabTextColor="#9B9696">
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/home"
                     android:text="Home" />
 
                 <com.google.android.material.tabs.TabItem
@@ -61,27 +65,27 @@
                     android:text="Movies" />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tvshows"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tv Shows"
-                    android:id="@+id/tvshows"
-                    />
+                    android:text="Tv Shows" />
 
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/activity_main_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
             android:background="#0F171E"
+            android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/organizerdashboard_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#0F171E"/>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/organizerdashboard_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0F171E" />
         </androidx.core.widget.NestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -89,19 +93,19 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        app:itemTextColor="@color/white"
-
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:elevation="16dp"
         android:background="#0F171E"
-        app:itemIconTint="@color/white"
-        app:itemIconPadding="10dp"
+        android:elevation="16dp"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header"
-        app:menu="@menu/main_menu"
-        />
+        app:itemIconPadding="10dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/main_menu" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

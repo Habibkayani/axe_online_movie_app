@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                switch (tab.getPosition()) {
 //                    case 1:
 //                        //lets se behaviour right now
-//                        setScrollDefaultSatate();
+//                       setScrollDefaultSatate();
 //                        setBannerMoviesPagerAdapter(tcshowsBannerMoviesList);
 //                        return;
 //

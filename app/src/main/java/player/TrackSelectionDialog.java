@@ -263,7 +263,7 @@ public final class TrackSelectionDialog extends DialogFragment {
 
   private static boolean isSupportedTrackType(int trackType) {
     switch (trackType) {
-      case C.TRACK_TYPE_VIDEO:
+     // case C.TRACK_TYPE_VIDEO:
       case C.TRACK_TYPE_AUDIO:
       case C.TRACK_TYPE_TEXT:
         return true;
@@ -274,8 +274,8 @@ public final class TrackSelectionDialog extends DialogFragment {
 
   private static String getTrackTypeString(Resources resources, int trackType) {
     switch (trackType) {
-      case C.TRACK_TYPE_VIDEO:
-        return resources.getString(R.string.exo_track_selection_title_video);
+//      case C.TRACK_TYPE_VIDEO:
+//        return resources.getString(R.string.exo_track_selection_title_video);
       case C.TRACK_TYPE_AUDIO:
         return resources.getString(R.string.exo_track_selection_title_audio);
       case C.TRACK_TYPE_TEXT:

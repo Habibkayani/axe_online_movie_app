@@ -1,5 +1,7 @@
 package Fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -69,6 +71,7 @@ ProgressBar progressBar;
         categoryTab = view.findViewById(R.id.tabLayout);
         nestedScrollView = view.findViewById(R.id.nested_scroll);
         progressBar=view.findViewById(R.id.movieprogressBar);
+
         // appBarLayout = view.findViewById(R.id.appbar);
 
 //        setupmoviesbanner();
@@ -119,7 +122,10 @@ ProgressBar progressBar;
         setupmoviesbanner();
 
     }
-
+    public static void onBackPressed()
+    {
+        //Pop Fragments off backstack and do your other checks
+    }
     private void setMainrecyclerView(List<PostMovies> listofcatgeory) {
         MoviemainrecyclerView = getActivity().findViewById(R.id.main_recyler1);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
