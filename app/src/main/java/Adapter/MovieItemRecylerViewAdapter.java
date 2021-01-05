@@ -26,7 +26,7 @@ import Model.AllTvshows.Movie;
 public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemRecylerViewAdapter.ItemViewHolder> {
     Context context;
     List<Movie2> movie2CategoryItems;
-
+    Integer Favourite;
 
     public MovieItemRecylerViewAdapter(Context context, List<Movie2> homeCategoryItemList) {
         this.context = context;
@@ -45,6 +45,16 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Glide.with(context).load(movie2CategoryItems.get(position).getAvatar()).into(holder.itemimage);
         holder.MovieName.setText(movie2CategoryItems.get(position).getTitle());
+        Favourite=movie2CategoryItems.get(position).getArticleFavourite();
+//        if(Favourite.equals(0))
+//        {
+//
+//            holder.favourite.setVisibility(View.VISIBLE);
+//        }
+//        if (Favourite.equals(1)) {
+//            holder.favourite.setVisibility(View.VISIBLE);
+//        }
+
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,13 +82,35 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
 
     public static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView itemimage;
+        ImageView itemimage,Watch,favourite;
         TextView MovieName;
+
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemimage=itemView.findViewById(R.id.item_image);
             MovieName=itemView.findViewById(R.id.movieimagename);
+            Watch=itemimage.findViewById(R.id.watch);
+            favourite=itemimage.findViewById(R.id.heart);
+
+
+
+
         }
+
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+
+//        Integer Favourite=movie2CategoryItems.get(position).getArticleFavourite();
+//        if(Favourite==1){
+//
+//
+//        }
+
+        return super.getItemViewType(position);
+
     }
 }

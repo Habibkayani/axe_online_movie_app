@@ -7,27 +7,19 @@
     android:background="#0F171E"
     app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
     tools:context="Activities.VideoDetails">
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:id="@+id/videodetail1"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
-            android:id="@+id/videoprogressBar"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/red"
-            android:indeterminateTintMode="src_atop"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
@@ -263,4 +255,20 @@
             app:srcCompat="@drawable/ic_back"
             tools:layout_editor_absoluteX="0dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ProgressBar
+        android:id="@+id/videoprogressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/red"
+        android:indeterminateTintMode="src_atop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

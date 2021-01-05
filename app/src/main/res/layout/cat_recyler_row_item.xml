@@ -4,8 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="90dp"
     android:layout_height="130dp"
+    android:id="@+id/ad"
     app:cardCornerRadius="5dp"
     android:layout_marginStart="16dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="90dp"
+        android:layout_height="20dp"
+        android:id="@+id/cd"
+        android:layout_gravity="top"
+
+        app:cardBackgroundColor="#B9000000">
+
+        <ImageView
+            android:id="@+id/watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/watch"
+            android:visibility="invisible"
+            ></ImageView>
+        <ImageView
+            android:id="@+id/heart"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/favrouite"
+            ></ImageView>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <ImageView
         android:id="@+id/item_image"

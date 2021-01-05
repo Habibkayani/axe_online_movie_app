@@ -1,6 +1,7 @@
 package Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,6 +62,7 @@ public class VideoDetails extends AppCompatActivity {
     List<MoviesCast> moviesCasts;
     Integer Id;
     ProgressBar progressBar,bar;
+    ConstraintLayout constraintLayout;
     List<SimilarMovie> similarMovies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +79,11 @@ public class VideoDetails extends AppCompatActivity {
         trailer=findViewById(R.id.tvtralier);
         report=findViewById(R.id.tvreport);
         back=findViewById(R.id.tv_back);
+        constraintLayout=findViewById(R.id.videodetail1);
         moviesCasts=new ArrayList<>();
         similarMovies=new ArrayList<>();
-        bar.setVisibility(View.VISIBLE);
+
+
         //set data layout
 
         listener();
@@ -272,6 +276,7 @@ public class VideoDetails extends AppCompatActivity {
         similarRecylerview.setLayoutManager(layoutManager);
         simlarMoviesAdapter = new SimilarMoviesAdapter(this,  similarMovies);
         bar.setVisibility(View.INVISIBLE);
+        constraintLayout.setVisibility(View.VISIBLE);
         similarRecylerview.setAdapter(simlarMoviesAdapter);
     }
 

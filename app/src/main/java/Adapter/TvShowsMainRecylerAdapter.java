@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.SeeMore;
+import Activities.TvShowDetail;
 import Model.AllMovies.Movie2;
 import Model.AllTvshows.Movie;
 import Model.AllTvshows.PostTVShows;
@@ -45,13 +47,12 @@ public class TvShowsMainRecylerAdapter extends RecyclerView.Adapter<TvShowsMainR
                 Intent i=new Intent(context, SeeMore.class);
                 //i.putExtra("cata", tvShowAllCategories.get(position).getCatagoryTitle());
 
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelableArrayList("StudentDetails", (ArrayList<? extends Parcelable>) allCategoryList.get(position).getCategoryItemList());
-//                i.putExtras(bundle);
+                PostTVShows userItem = tvShowAllCategories.get(position);
+                Intent yourIntent = new Intent(context,SeeMore.class);
+                yourIntent.putExtra("item",userItem.getCategory());
 
-                //i.putExtra("PLACE", AllCategory);
 
-                context.startActivity(i);
+                context.startActivity(yourIntent);
             }
         });
     }

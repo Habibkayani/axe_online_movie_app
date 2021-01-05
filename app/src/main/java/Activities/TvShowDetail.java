@@ -2,6 +2,7 @@ package Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,6 +70,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
     TextView totalnumberepisode;
     String text;
     String ACCESS_TOKEN;
+    ConstraintLayout constraintLayout;
 
 
     ///data fetching
@@ -107,6 +109,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         seasonslist = new ArrayList<>();
         allitems = new ArrayList<>();
         spineerdata = new ArrayList<>();
+        constraintLayout=findViewById(R.id.tvshowdetail);
 
 
         ////fetch and set dat/////
@@ -594,6 +597,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         EpisodeRecylerview.setLayoutManager(layoutManager);
         episodeRecylerViewAdapter = new EpisodeRecylerViewAdapter(this, episodeItemList);
         bar.setVisibility(View.INVISIBLE);
+        constraintLayout.setVisibility(View.VISIBLE);
         EpisodeRecylerview.setAdapter(episodeRecylerViewAdapter);
 
 

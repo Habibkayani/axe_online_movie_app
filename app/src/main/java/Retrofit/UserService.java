@@ -11,6 +11,7 @@ import Model.AllTvshows.PostTVShows;
 import Model.AllTvshows.ModelTvShowDetail;
 import Model.Search.Search;
 import Model.TvSearch.TvShowSearch;
+import Model.TvShowGenere.TvGenere;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -59,4 +60,9 @@ public interface UserService {
     @FormUrlEncoded
     @POST("shows")
     Call<TvShowSearch> getTvSearch(@Field("title") String title);
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("tv-shows")
+    Call<TvGenere> gettvgenere(@Field ("order_by") String order_by, @Field ("order") String order,@Field("genre") String genre);
 }

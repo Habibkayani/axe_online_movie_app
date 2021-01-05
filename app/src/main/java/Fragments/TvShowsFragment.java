@@ -81,6 +81,7 @@ public class TvShowsFragment extends Fragment {
         nestedScrollView = view.findViewById(R.id.nested_scroll);
         // appBarLayout = view.findViewById(R.id.appbar);
 progressBar=view.findViewById(R.id.tvshowprogressBar);
+progressBar.setVisibility(View.VISIBLE);
         ////token
         UserSession userSession = new UserSession(getContext());
         ACCESS_TOKEN = userSession.GetKeyVlaue("access_token");

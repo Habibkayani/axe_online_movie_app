@@ -1,9 +1,12 @@
 package Fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,7 +35,9 @@ import Adapter.MovieBannerMoviesPagerAdapter;
 import Adapter.MoviesMainRecylerAdapter;
 
 import Model.AllBanners.MovieBannerMovies;
+import Model.AllMovies.Movie2;
 import Model.AllMovies.PostMovies;
+import Model.AllTvshows.PostTVShows;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -45,6 +52,7 @@ import Retrofit.UserService;
 public class MoviesFragment extends Fragment {
     MovieBannerMoviesPagerAdapter movieBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager1;
+    ImageView Watch,Favourite;
 ProgressBar progressBar;
     List<MovieBannerMovies> moviesHomeBannerMoviesList;
     NestedScrollView nestedScrollView;
@@ -53,6 +61,11 @@ ProgressBar progressBar;
     List<PostMovies> listofcatgeory;
     TabLayout tabIndicator, categoryTab;
     String ACCESS_TOKEN;
+    List<Movie2> movieslist;
+    ConstraintLayout constraintLayout;
+    CardView cardView;
+    int favourite,watch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,9 +77,28 @@ ProgressBar progressBar;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tabIndicator = view.findViewById(R.id.tab_indicator1);
+
         categoryTab = view.findViewById(R.id.tabLayout);
         nestedScrollView = view.findViewById(R.id.nested_scroll);
         progressBar=view.findViewById(R.id.movieprogressBar);
+        movieslist=new ArrayList<>();
+//        constraintLayout=view.findViewById(R.id.ad);
+//        cardView=view.findViewById(R.id.cd);
+        Watch=view.findViewById(R.id.watch);
+        Favourite=view.findViewById(R.id.heart);
+
+
+        //        Movie2 movie2= new Movie2();
+//        Integer f=movie2.getArticleFavourite();
+//        Integer w=movie2.getArticleViewed();
+//        if(f==1){
+//            Favourite.setVisibility(View.VISIBLE);
+//
+//        }
+//        if(w==1){
+//            Watch.setVisibility(View.VISIBLE);
+//
+//        }
 
         // appBarLayout = view.findViewById(R.id.appbar);
 
@@ -98,9 +130,29 @@ ProgressBar progressBar;
 
                 if (response.isSuccessful() && response.body() != null) {
 
-                    listofcatgeory = response.body();
+                   listofcatgeory = response.body();
+//                    for(int i=0;i<listofcatgeory.size();i++){
 //
-                    Log.d("onResponse",listofcatgeory.toString());
+//                        movieslist=listofcatgeory.get(i).getMovie2();
+//
+//                        for(int j=0;j<movieslist.size();j++){
+//                            favourite=movieslist.get(j).getArticleFavourite();
+//                            watch=movieslist.get(j).getArticleViewed();
+//                            Log.d("Movies", String.valueOf(movieslist.get(j).getArticleFavourite()));
+//                            if(favourite == 1){
+//
+//                                Favourite.setVisibility(View.VISIBLE);
+//                            }
+//                            if(watch == 1){
+//
+//                                Watch.setVisibility(View.VISIBLE);
+//
+//                            }
+//
+//                        }
+//                    }
+
+                 //   Log.d("onResponse",listofcatgeory.toString());
                     setMainrecyclerView(listofcatgeory);
 
                 }
@@ -123,6 +175,9 @@ ProgressBar progressBar;
         //Pop Fragments off backstack and do your other checks
     }
     private void setMainrecyclerView(List<PostMovies> listofcatgeory) {
+
+
+
         MoviemainrecyclerView = getActivity().findViewById(R.id.main_recyler1);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         MoviemainrecyclerView.setLayoutManager(layoutManager);

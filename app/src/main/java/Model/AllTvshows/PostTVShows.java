@@ -3,11 +3,12 @@ package Model.AllTvshows;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 import Model.AllMovies.Movie2;
 
-public class PostTVShows {
+public class PostTVShows  {
 
 
     @SerializedName("category")

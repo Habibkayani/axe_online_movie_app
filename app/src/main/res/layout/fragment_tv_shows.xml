@@ -63,6 +63,7 @@ tools:context="Fragments.TvShowsFragment"
     <ProgressBar
         android:id="@+id/tvshowprogressBar"
         android:layout_width="wrap_content"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:progressDrawable="@drawable/progressdrawable"
