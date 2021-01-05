@@ -35,6 +35,8 @@ import Model.AllTvshows.Movie;
 import Model.AllTvshows.Season;
 import Model.AllTvshows.SimilarTvShows;
 import Model.AllTvshows.TvShowsCast;
+import Model.Search.Body;
+import Model.TvSearch.Body1;
 import Retrofit.UserService;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
@@ -86,7 +88,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
     ArrayAdapter adapter;
     String trailerlink,report;
     Button  Trailer,Report;
-
+    Integer Id;
     //////////////////////
 
     @Override
@@ -129,12 +131,23 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         Bundle bundle = i.getExtras();
         Movie user = (Movie) bundle.getSerializable("user");
 
-        Integer Id = user.getId();
 
-//         String title=user.getTitle();
-//         String image=user.getAvatar();
-//         String genere=user.getGenre();
-//         String rating=user.getRating();
+
+        if(user==null){
+            Intent intent=getIntent();
+            Bundle b=intent.getExtras();
+            Body1 body= (Body1) b.getSerializable("id");
+            Integer SearchId=body.getId();
+            Log.d("opoo", String.valueOf(SearchId));
+            Searchclient(SearchId);
+
+        }
+        else
+        {
+            Id = user.getId();
+            client(Id);
+
+        }
 
         Log.d("opoo", String.valueOf(Id));
 
@@ -148,6 +161,11 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
 
         ////////////////
         /////fetch data
+
+
+    }
+
+    private void client(Integer id) {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -165,7 +183,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         UserService Client = retrofit.create(UserService.class);
 
 ////////////////////////////////////////////////////////////////////////////
-        Call<ModelTvShowDetail> listCall = Client.getTvShowDetail(Id);
+        Call<ModelTvShowDetail> listCall = Client.getTvShowDetail(id);
         listCall.enqueue(new Callback<ModelTvShowDetail>() {
             @Override
             public void onResponse(Call<ModelTvShowDetail> call, retrofit2.Response<ModelTvShowDetail> response) {
@@ -302,20 +320,190 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        }
+            }
 
 
 
 
 
 
-//
+            //
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
+    }
+
+    private void Searchclient(Integer searchId) {
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://axetv.net/api/v2/get/tv-show/detail/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService Client = retrofit.create(UserService.class);
+
+////////////////////////////////////////////////////////////////////////////
+        Call<ModelTvShowDetail> listCall = Client.getTvShowDetail(searchId);
+        listCall.enqueue(new Callback<ModelTvShowDetail>() {
+            @Override
+            public void onResponse(Call<ModelTvShowDetail> call, retrofit2.Response<ModelTvShowDetail> response) {
+                // Log.d("ONRESPONSE",response.body().toString());
+
+
+                /////get data from api//////
+                String Title = response.body().getTitle();
+                String Description = response.body().getDescription();
+                String Avatar = response.body().getBackground();
+                String Trailer = response.body().getTrailer();
+                String Rating = response.body().getRating();
+                Integer Favourite = response.body().getFavourite();
+                Object Director = response.body().getDirector();
+                String Genere = response.body().getGenre();
+                trailerlink=response.body().getTrailer();
+
+                Log.d("trailer",trailerlink);
+
+                seasonslist = response.body().getSeasons();
+                String spinner = null;
+                for(int j=0;j<seasonslist.size();j++){
+
+                    spinner=seasonslist.get(j).getTitle();
+
+                    spineerdata.add(spinner);
+                }
+
+                Log.d("ata",spineerdata.toString());
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_spinner_item, spineerdata);
+                adapter.setDropDownViewResource(R.layout.custom_textview_to_spinner);
+                colorspinner.setAdapter(adapter);
+                Log.d("teeee",spineerdata.toString());
+
+//                    Seasonid = seasonslist.get(i).getId();
+//                    SeasonTitle = seasonslist.get(i).getTitle();
+
+                episodeList = seasonslist.get(0).getEpisodes();
+
+
+                setBannerMoviesPagerAdapter(episodeList);
+                int size = episodeList.size();
+
+                totalnumberepisode.setText(String.valueOf(size));
+
+                ////////////
+
+
+
+
+
+
+
+
+
+
+                ///////////////////////////////////////
+                ////set tvshowcastRecylerView/////////
+                tvShowsCasts = response.body().getCast();
+                setMainRecyler(tvShowsCasts);
+                //////////////////////////////////////
+
+                //set textview data and image////////
+                tilte.setText(Title);
+                description.setText(Description);
+                //set data layout
+                Glide.with(getApplicationContext()).load(Avatar).into(movieImage);
+                rating.setText(Rating);
+                genere.setText(Genere);
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ModelTvShowDetail> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", t.getLocalizedMessage().toString());
+            }
+        });
+        ///////////////////////////////////////
+
+
+        TVshowcast();
+
+//                AppCompatSpinner colorspinner = findViewById(R.id.showseasonspinner);
+//                ArrayAdapter adapter = ArrayAdapter.createFromResource(
+//                        this, R.array.Spinner_Item, R.layout.color_spinner_layout
+//                );
+//                adapter.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+//
+//                colorspinner.setAdapter(adapter);
+//                colorspinner.setOnItemSelectedListener(this);
+        colorspinner = findViewById(R.id.showseasonspinner);
+        //colorspinner.setPopupBackgroundResource(R.drawable.spinner_background);
+
+
+        colorspinner.setOnItemSelectedListener(this);
+        colorspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+                ((TextView) parent.getChildAt(0)).setTextSize(12);
+                //text = selectedItem.toString();
+                Log.d("teeee",selectedItem);
+
+
+
+                for (int i = 0; i < seasonslist.size(); i++) {
+
+
+                    Seasonid = seasonslist.get(i).getId();
+                    SeasonTitle = seasonslist.get(i).getTitle();
+//
+//
+                    if (SeasonTitle.equals(selectedItem)) {
+                        episodeList = seasonslist.get(i).getEpisodes();
+                        int size = episodeList.size();
+
+                        totalnumberepisode.setText(String.valueOf(size));
+                    }
+
+                    Log.d("tee",SeasonTitle);
+                }
+
+
+                setBannerMoviesPagerAdapter(episodeList);
+
+
+
+            }
+
+
+
+
+
+
+            //
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

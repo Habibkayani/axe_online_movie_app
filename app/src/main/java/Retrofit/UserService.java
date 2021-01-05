@@ -10,6 +10,7 @@ import Model.AllMovies.PostMovies;
 import Model.AllTvshows.PostTVShows;
 import Model.AllTvshows.ModelTvShowDetail;
 import Model.Search.Search;
+import Model.TvSearch.TvShowSearch;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -53,4 +54,9 @@ public interface UserService {
     @FormUrlEncoded
     @POST("articles")
     Call<Search> getSearch(@Field("title") String title);
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("shows")
+    Call<TvShowSearch> getTvSearch(@Field("title") String title);
 }

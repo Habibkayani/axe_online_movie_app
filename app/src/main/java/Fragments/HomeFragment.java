@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
     RecyclerView mainrecyclerView;
     HomeMainRecylerAdapter homeMainRecylerAdapter;
     List<HomeAllCategory> homeAllCategoryList;
-
     TabLayout tabIndicator, categoryTab;
 
 
@@ -153,11 +152,10 @@ public class HomeFragment extends Fragment {
 
     private void setupmoviesbanner() {
         homeHomeBannerMoviesList = new ArrayList<>();
-        homeHomeBannerMoviesList.add(new HomeBannerMovies(1, "PONMANGAL VANDHAI", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner1.png", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeHomeBannerMoviesList.add(new HomeBannerMovies(2, "LITTLE WOMEN", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner2.png", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeHomeBannerMoviesList.add(new HomeBannerMovies(3, "BHOOT THE HAUNTED SHIP", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner3.png", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeHomeBannerMoviesList.add(new HomeBannerMovies(4, "MIRZAPUR", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner4.png", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeHomeBannerMoviesList.add(new HomeBannerMovies(5, "PIKACHU", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner5.png", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeHomeBannerMoviesList.add(new HomeBannerMovies(1, "Dark Night", "https://collider.com/wp-content/uploads/dark-knight-rises-movie-poster-banner-catwoman.jpg", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeHomeBannerMoviesList.add(new HomeBannerMovies(2, "Venom", "https://film-book.com/wp-content/uploads/2018/09/venom-banner-movie-poster-01-600x350.jpg", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeHomeBannerMoviesList.add(new HomeBannerMovies(3, "Avenger", "https://collider.com/wp-content/uploads/avengers-character-poster-banner.jpeg", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+
         setHomeBannerMoviesPagerAdapter(homeHomeBannerMoviesList);
         ///tvshows////
 //        tcshowsBannerMoviesList = new ArrayList<>();

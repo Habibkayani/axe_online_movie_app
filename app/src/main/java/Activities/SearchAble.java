@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActionBar;
-import android.app.DownloadManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 //import android.widget.SearchView;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.axe.R;
@@ -37,13 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.SearchListViewAdapter;
-import Adapter.SimilarMoviesAdapter;
+import Adapter.TvsearchlistviewAdapter;
 import Fragments.HomeFragment;
 import Fragments.MoviesFragment;
 import Fragments.TvShowsFragment;
-import Model.AllMovies.Main;
 import Model.Search.Body;
 import Model.Search.Search;
+import Model.TvSearch.Body1;
+import Model.TvSearch.TvShowSearch;
 import SessionManager.UserSession;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -63,6 +59,8 @@ public class SearchAble extends AppCompatActivity {
     EditText searchedit;
     String ACCESS_TOKEN;
     List<Body> bodyList;
+    List<Body1> bodyList1;
+    TvsearchlistviewAdapter tvsearchlistviewAdapter;
     SearchListViewAdapter searchListViewAdapter;
     ProgressBar progressBar;
 
@@ -155,6 +153,17 @@ public class SearchAble extends AppCompatActivity {
         searchListViewAdapter.notifyDataSetChanged();
 
     }
+    private void setBodyRecylerViewAdapter2(List<Body1> bodyList1) {
+
+        recyclerView = findViewById(R.id.lrecyler8);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        tvsearchlistviewAdapter = new TvsearchlistviewAdapter(this, bodyList1);
+        progressBar.setVisibility(View.INVISIBLE);
+        recyclerView.setAdapter(tvsearchlistviewAdapter);
+        tvsearchlistviewAdapter.notifyDataSetChanged();
+    }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -230,6 +239,60 @@ public class SearchAble extends AppCompatActivity {
 
 
                 }
+                else if(Position == 2){
+                    if (query.isEmpty()) {
+
+
+                        bodyList.clear();
+                        recyclerView.notifyAll();
+                        searchListViewAdapter.notifyDataSetChanged();
+
+                    }
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request newRequest = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                    }).build();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .client(client)
+                            .baseUrl("https://axetv.net/api/v2/search/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    UserService Client = retrofit.create(UserService.class);
+                    Call<TvShowSearch> SearchCall = Client.getTvSearch(query);
+                    SearchCall.enqueue(new Callback<TvShowSearch>() {
+                        @Override
+                        public void onResponse(Call<TvShowSearch> call, retrofit2.Response<TvShowSearch> response) {
+
+
+                            if (response.isSuccessful()) {
+
+                                // Toast.makeText(getApplicationContext(),"Data Sucessfull integrate",Toast.LENGTH_LONG).show();
+
+                                bodyList1= response.body().getBody();
+                                setBodyRecylerViewAdapter2(bodyList1);
+
+
+                            } else {
+
+                                Toast.makeText(getApplicationContext(), "Please Try something else", Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShowSearch> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+                }
                 else {
 
                     Toast.makeText(getApplicationContext(),"Wrong Postion",Toast.LENGTH_LONG).show();
@@ -290,6 +353,55 @@ public class SearchAble extends AppCompatActivity {
                     });
 
                 }
+                else if(Position == 2){
+
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request newRequest = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                    }).build();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .client(client)
+                            .baseUrl("https://axetv.net/api/v2/search/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    UserService Client = retrofit.create(UserService.class);
+                    Call<TvShowSearch> SearchCall = Client.getTvSearch(newText);
+                    SearchCall.enqueue(new Callback<TvShowSearch>() {
+                        @Override
+                        public void onResponse(Call<TvShowSearch> call, retrofit2.Response<TvShowSearch> response) {
+
+
+                            if (response.isSuccessful()) {
+
+                                // Toast.makeText(getApplicationContext(),"Data Sucessfull integrate",Toast.LENGTH_LONG).show();
+
+                                bodyList1= response.body().getBody();
+                                setBodyRecylerViewAdapter2(bodyList1);
+
+
+                            } else {
+
+                                Toast.makeText(getApplicationContext(), "Please Try something else", Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShowSearch> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+                }
+
+
 
                 else {
 
