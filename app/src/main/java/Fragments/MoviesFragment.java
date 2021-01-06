@@ -65,6 +65,7 @@ ProgressBar progressBar;
     ConstraintLayout constraintLayout;
     CardView cardView;
     int favourite,watch;
+    List<String>favourite1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +87,8 @@ ProgressBar progressBar;
 //        cardView=view.findViewById(R.id.cd);
         Watch=view.findViewById(R.id.watch);
         Favourite=view.findViewById(R.id.heart);
+
+
 
 
         //        Movie2 movie2= new Movie2();
@@ -131,25 +134,30 @@ ProgressBar progressBar;
                 if (response.isSuccessful() && response.body() != null) {
 
                    listofcatgeory = response.body();
+
 //                    for(int i=0;i<listofcatgeory.size();i++){
 //
 //                        movieslist=listofcatgeory.get(i).getMovie2();
 //
 //                        for(int j=0;j<movieslist.size();j++){
+//
+//
 //                            favourite=movieslist.get(j).getArticleFavourite();
+//
 //                            watch=movieslist.get(j).getArticleViewed();
-//                            Log.d("Movies", String.valueOf(movieslist.get(j).getArticleFavourite()));
-//                            if(favourite == 1){
+//
+//                            if(favourite >= 1){
 //
 //                                Favourite.setVisibility(View.VISIBLE);
 //                            }
-//                            if(watch == 1){
+//                            if(watch >= 1){
 //
 //                                Watch.setVisibility(View.VISIBLE);
 //
 //                            }
 //
 //                        }
+//
 //                    }
 
                  //   Log.d("onResponse",listofcatgeory.toString());

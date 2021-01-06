@@ -9,6 +9,7 @@ import Model.AllMovies.Main;
 import Model.AllMovies.PostMovies;
 import Model.AllTvshows.PostTVShows;
 import Model.AllTvshows.ModelTvShowDetail;
+import Model.MovieGenere.MovieGenere;
 import Model.Search.Search;
 import Model.TvSearch.TvShowSearch;
 import Model.TvShowGenere.TvGenere;
@@ -65,4 +66,16 @@ public interface UserService {
     @FormUrlEncoded
     @POST("tv-shows")
     Call<TvGenere> gettvgenere(@Field ("order_by") String order_by, @Field ("order") String order,@Field("genre") String genre);
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("articles")
+    Call<MovieGenere> getmoviegenere(@Field ("order_by") String order_by, @Field ("order") String order, @Field("genre") String genre);
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("articles?page=")
+    Call<MovieGenere> getmoviepage( @Query("page") int page,
+                                    @Field ("order_by") String order_by, @Field ("order")
+                                            String order, @Field("genre") String genre
+                                    );
 }

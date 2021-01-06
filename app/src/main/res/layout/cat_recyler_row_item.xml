@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:src="@drawable/watch"
-            android:visibility="invisible"
+            android:visibility="gone"
             ></ImageView>
         <ImageView
             android:id="@+id/heart"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"

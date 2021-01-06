@@ -30,7 +30,9 @@ import Model.AllMovies.Movie2;
 import Model.AllMovies.Data;
 import Model.AllMovies.MoviesCast;
 import Model.AllMovies.SimilarMovie;
+import Model.MovieGenere.Datum2;
 import Model.Search.Body;
+import Model.TvShowGenere.TvGenere;
 import SessionManager.UserSession;
 import Retrofit.UserService;
 import okhttp3.Interceptor;
@@ -104,10 +106,19 @@ public class VideoDetails extends AppCompatActivity {
             Intent intent=getIntent();
             Bundle b=intent.getExtras();
             Body body= (Body) b.getSerializable("id");
-            Integer SearchId=body.getId();
-            Log.d("opoo", String.valueOf(SearchId));
-            Searchclient(SearchId);
 
+            if(body==null){
+
+                Intent intent2 = getIntent();
+                int iddd= intent2.getExtras().getInt("Iddd");
+                tvGenere(iddd);
+               // Log.d("id", String.valueOf(id));
+            }
+            else{
+
+                Integer SearchId=body.getId();
+                Searchclient(SearchId);
+            }
         }
         else
         {
@@ -117,6 +128,67 @@ public class VideoDetails extends AppCompatActivity {
         }
 
 
+    }
+
+    private void tvGenere(int iddd) {
+
+
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://axetv.net/api/v2/get/article/detail/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService Client = retrofit.create(UserService.class);
+        Call<Main> movieDataCall=Client.getMoviesDetail(iddd);
+        movieDataCall.enqueue(new Callback<Main>() {
+            @Override
+            public void onResponse(Call<Main> call, retrofit2.Response<Main> response) {
+
+
+                if (response.body().getStatusCode()==200){
+
+                    //Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_LONG).show();
+                    Log.d("MovieData",response.body().getMessage());
+
+
+
+                    mImage=response.body().getData().getBackground();
+                    Glide.with(getApplicationContext()).load(mImage).into(movieImage);
+                    mName=response.body().getData().getTitle();
+                    moviename.setText(mName);
+                    String tvdescription1=response.body().getData().getDescription();
+                    tvdescription.setText(tvdescription1);
+                    String R=response.body().getData().getRating();
+                    String g=response.body().getData().getGenre();
+                    rating.setText(R);
+                    genere.setText(g);
+                    playlink=response.body().getData().getVideoLink();
+                    trailerlink=response.body().getData().getTrailerLink();
+
+                    moviesCasts=response.body().getData().getCast();
+                    setMainRecyler(moviesCasts);
+
+                    similarMovies=response.body().getData().getSimilarMovies();
+                    setsimlarMainRecyler(similarMovies);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Main> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", t.getLocalizedMessage().toString());
+            }
+        });
     }
 
     private void Searchclient(Integer idd) {

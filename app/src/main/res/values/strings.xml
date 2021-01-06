@@ -185,7 +185,6 @@
     <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
 
 
-
     <string name="error_querying_decoders">Unable to query device decoders</string>
 
 

@@ -3,6 +3,7 @@ package Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,10 @@ public class MovieItemRecylerViewAdapter extends RecyclerView.Adapter<MovieItemR
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Glide.with(context).load(movie2CategoryItems.get(position).getAvatar()).into(holder.itemimage);
         holder.MovieName.setText(movie2CategoryItems.get(position).getTitle());
-        Favourite=movie2CategoryItems.get(position).getArticleFavourite();
+
+
+
+
 //        if(Favourite.equals(0))
 //        {
 //

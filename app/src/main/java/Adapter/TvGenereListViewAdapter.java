@@ -3,6 +3,7 @@ package Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +19,18 @@ import com.example.axe.R;
 import java.util.List;
 
 import Activities.TvShowDetail;
+import Activities.VideoDetails;
 import Model.AllTvshows.Movie;
+import Model.MovieGenere.Datum2;
 import Model.TvShowGenere.Datum;
 
 public class TvGenereListViewAdapter extends RecyclerView.Adapter<TvGenereListViewAdapter.ItemViewHolder> {
     Context context;
-    List<Datum> tvShowCategoryItems;
+    List<Datum> datumList;
 
     public TvGenereListViewAdapter(Context context, List<Datum> homeCategoryItemList) {
         this.context = context;
-        this.tvShowCategoryItems = homeCategoryItemList;
+        this.datumList = homeCategoryItemList;
     }
 
 
@@ -40,37 +43,29 @@ public class TvGenereListViewAdapter extends RecyclerView.Adapter<TvGenereListVi
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Glide.with(context).load(tvShowCategoryItems.get(position).getAvatar()).into(holder.itemimage);
-        holder.tvgenereName.setText(tvShowCategoryItems.get(position).getTitle());
-        holder.tvgenererating.setText(tvShowCategoryItems.get(position).getRating());
+        Glide.with(context).load(datumList.get(position).getAvatar()).into(holder.itemimage);
+        holder.tvgenereName.setText(datumList.get(position).getTitle());
+        holder.tvgenererating.setText(datumList.get(position).getRating());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-//                Intent i=new Intent(context, TvShowDetail.class);
-//                i.putExtra("movieId", tvShowCategoryItems.get(position).getId());
-//                i.putExtra("movieName", tvShowCategoryItems.get(position).getTitle());
-//                i.putExtra("movieImageUrl", tvShowCategoryItems.get(position).getAvatar());
-//                i.putExtra("movieRating", tvShowCategoryItems.get(position).getRating());
-//
-//
-//
-//
-//                context.startActivity(i);
+                Datum userItem = datumList.get(position);
+                Intent intent = new Intent(context, TvShowDetail.class);
+                intent.putExtra("Idddd",userItem.getId());
+                context.startActivity(intent);
 
-//                Movie userItem = tvShowCategoryItems.get(position);
-//                Intent yourIntent = new Intent(context, TvShowDetail.class);
-//                Bundle b = new Bundle();
-//                b.putSerializable("user", userItem);
-//                yourIntent.putExtras(b); //pass bundle to your intent
-//                context.startActivity(yourIntent);
+//                yourIntent.putExtra("TvshowGenre",TvGenere.getId());
+                //pass bundle to your intent
+
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return tvShowCategoryItems.size();
+        return datumList.size();
     }
 
     public static final class ItemViewHolder extends RecyclerView.ViewHolder {

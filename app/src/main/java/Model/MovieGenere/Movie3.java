@@ -1,17 +1,18 @@
-package Model.TvShowGenere;
+package Model.MovieGenere;
+
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Movies {
+public class Movie3{
 
     @SerializedName("current_page")
     @Expose
     private Integer currentPage;
     @SerializedName("data")
     @Expose
-    private List<Datum> datumList = null;
+    private List<Datum2> datum2List = null;
     @SerializedName("from")
     @Expose
     private Integer from;
@@ -45,12 +46,12 @@ public class Movies {
         this.currentPage = currentPage;
     }
 
-    public List<Datum> getData() {
-        return datumList;
+    public List<Datum2> getDatum2List() {
+        return datum2List;
     }
 
-    public void setData(List<Datum> data) {
-        this.datumList = data;
+    public void setDatum2List(List<Datum2> datum2List) {
+        this.datum2List = datum2List;
     }
 
     public Integer getFrom() {
@@ -116,5 +117,4 @@ public class Movies {
     public void setTotal(Integer total) {
         this.total = total;
     }
-
 }
