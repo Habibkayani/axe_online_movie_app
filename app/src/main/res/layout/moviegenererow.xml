@@ -1,78 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-
-    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="#0F171E"
-    >
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        app:cardBackgroundColor="@color/black"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-
+        android:layout_width="0dp"
+        app:cardBackgroundColor="#0F171E"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="10dp"
+        app:contentPadding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6">
 
-        <ImageView
-            android:id="@+id/moviegenereimage"
-            android:layout_marginTop="15dp"
-            android:layout_width="120dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="110dp"
-            />
-
-        <RelativeLayout
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:gravity="center"
-
-            android:layout_width="200dp"
-            android:layout_height="70dp">
-            <TextView
-                android:id="@+id/moviegeneretitle"
-                android:layout_width="200dp"
-                android:text="Name"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_semibold"
-
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="#0F171E"
+            android:layout_height="match_parent">
 
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/quicksand_medium"
-                android:text="Rating:"
-                android:textSize="12sp" />
+            <ImageView
+                android:id="@+id/moviegenereimage"
+                android:layout_width="140dp"
+                android:layout_height="130dp"
+                android:scaleType="fitXY"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_background" />
 
-            <TextView
-                android:id="@+id/moviegenereratingrating"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/quicksand_medium"
-                android:textSize="12sp"></TextView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
 
-        </RelativeLayout>
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="110dp"
+                app:cardBackgroundColor="#B9000000">
+
+                <TextView
+                    android:id="@+id/moviegeneretitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:text="Movie Name"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp">
+
+
+                </TextView>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

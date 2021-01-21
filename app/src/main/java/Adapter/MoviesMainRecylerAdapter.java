@@ -87,7 +87,7 @@ public class MoviesMainRecylerAdapter extends RecyclerView.Adapter<MoviesMainRec
     }
 
     private void setItemRecyler(RecyclerView recyclerView, List<Movie2> homeCategoryItemList) {
-       MovieItemRecylerViewAdapter homeItemRecylerViewAdapter = new  MovieItemRecylerViewAdapter(context, homeCategoryItemList);
+        MovieItemRecylerViewAdapter homeItemRecylerViewAdapter = new  MovieItemRecylerViewAdapter(context, homeCategoryItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(homeItemRecylerViewAdapter);
 

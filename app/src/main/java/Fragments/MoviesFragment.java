@@ -53,7 +53,7 @@ public class MoviesFragment extends Fragment {
     MovieBannerMoviesPagerAdapter movieBannerMoviesPagerAdapter;
     ViewPager bannerMovieViewPager1;
     ImageView Watch,Favourite;
-ProgressBar progressBar;
+    ProgressBar progressBar;
     List<MovieBannerMovies> moviesHomeBannerMoviesList;
     NestedScrollView nestedScrollView;
     RecyclerView MoviemainrecyclerView;
@@ -133,35 +133,9 @@ ProgressBar progressBar;
 
                 if (response.isSuccessful() && response.body() != null) {
 
-                   listofcatgeory = response.body();
-
-//                    for(int i=0;i<listofcatgeory.size();i++){
-//
-//                        movieslist=listofcatgeory.get(i).getMovie2();
-//
-//                        for(int j=0;j<movieslist.size();j++){
-//
-//
-//                            favourite=movieslist.get(j).getArticleFavourite();
-//
-//                            watch=movieslist.get(j).getArticleViewed();
-//
-//                            if(favourite >= 1){
-//
-//                                Favourite.setVisibility(View.VISIBLE);
-//                            }
-//                            if(watch >= 1){
-//
-//                                Watch.setVisibility(View.VISIBLE);
-//
-//                            }
-//
-//                        }
-//
-//                    }
-
-                 //   Log.d("onResponse",listofcatgeory.toString());
+                    listofcatgeory = response.body();
                     setMainrecyclerView(listofcatgeory);
+
 
                 }
             }

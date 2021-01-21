@@ -1,0 +1,89 @@
+package Model.AllSearch;
+
+
+import com.google.gson.annotations.Expose;
+        import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Body3 implements Serializable {
+
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("flag")
+    @Expose
+    private String flag;
+    @SerializedName("year")
+    @Expose
+    private Integer year;
+    @SerializedName("is_4k")
+    @Expose
+    private Integer is4k;
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getIs4k() {
+        return is4k;
+    }
+
+    public void setIs4k(Integer is4k) {
+        this.is4k = is4k;
+    }
+
+}

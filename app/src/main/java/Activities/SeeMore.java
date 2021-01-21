@@ -3,6 +3,7 @@ package Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -115,13 +116,11 @@ public class SeeMore extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                     currentPage = response.body().getMovies().getCurrentPage();
-                    from = response.body().getMovies().getFrom();
+
                     last_page = response.body().getMovies().getLastPage();
                     nextPage_url = response.body().getMovies().getNextPageUrl();
                     path = response.body().getMovies().getPath();
                     per_page = response.body().getMovies().getPerPage();
-                    previouspage_url = (String) response.body().getMovies().getPrevPageUrl();
-                    to = response.body().getMovies().getTo();
                     total = response.body().getMovies().getTotal();
                     datumList = response.body().getMovies().getData();
                     setRecylerView(datumList);
@@ -141,7 +140,8 @@ public class SeeMore extends AppCompatActivity {
 
     private void setRecylerView(List<Datum> datumList) {
         RecyclerView recyclerView = findViewById(R.id.seemorerecyleview);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        int colum=3;
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,  colum);
         recyclerView.setLayoutManager(layoutManager);
         tvGenereListViewAdapter = new TvGenereListViewAdapter(this, datumList);
         progressBar1.setVisibility(View.INVISIBLE);
@@ -159,13 +159,13 @@ public class SeeMore extends AppCompatActivity {
 
 
                 }
-                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    Log.d("-----", "top");
-                    progressBar2.setVisibility(View.VISIBLE);
-                    performePagination2();
-
-
-                }
+//                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                    Log.d("-----", "top");
+//                    progressBar2.setVisibility(View.VISIBLE);
+//                    performePagination2();
+//
+//
+//                }
             }
 
             @Override

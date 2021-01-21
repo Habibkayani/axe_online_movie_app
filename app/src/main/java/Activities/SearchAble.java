@@ -31,11 +31,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Adapter.BothSearchListViewAdapter;
 import Adapter.SearchListViewAdapter;
 import Adapter.TvsearchlistviewAdapter;
 import Fragments.HomeFragment;
 import Fragments.MoviesFragment;
 import Fragments.TvShowsFragment;
+import Model.AllSearch.Body3;
+import Model.AllSearch.BothSearch;
 import Model.Search.Body;
 import Model.Search.Search;
 import Model.TvSearch.Body1;
@@ -60,8 +63,10 @@ public class SearchAble extends AppCompatActivity {
     String ACCESS_TOKEN;
     List<Body> bodyList;
     List<Body1> bodyList1;
+    List<Body3> bodyList3;
     TvsearchlistviewAdapter tvsearchlistviewAdapter;
     SearchListViewAdapter searchListViewAdapter;
+    BothSearchListViewAdapter bothSearchListViewAdapter;
     ProgressBar progressBar;
 
     @Override
@@ -74,6 +79,7 @@ public class SearchAble extends AppCompatActivity {
 
         bodyList = new ArrayList<>();
         progressBar = findViewById(R.id.progressBarxxxx);
+        bodyList3=new ArrayList<>();
 //        searchedit = findViewById(R.id.searchedittext);
 //        Searchfromlist = findViewById(R.id.searchinlistbtn);
 
@@ -184,7 +190,67 @@ public class SearchAble extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (Position == 1) {
+
+                if(Position ==0){
+
+
+                    if (query.isEmpty()) {
+
+
+                        bodyList.clear();
+                        recyclerView.notifyAll();
+                        searchListViewAdapter.notifyDataSetChanged();
+
+                    }
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request newRequest = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                    }).build();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .client(client)
+                            .baseUrl("https://axetv.net/api/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    UserService Client = retrofit.create(UserService.class);
+                    Call<BothSearch> SearchCall = Client.getBoth(query);
+                    SearchCall.enqueue(new Callback<BothSearch>() {
+                        @Override
+                        public void onResponse(Call<BothSearch> call, retrofit2.Response<BothSearch> response) {
+
+
+                            if (response.isSuccessful()) {
+
+                                // Toast.makeText(getApplicationContext(),"Data Sucessfull integrate",Toast.LENGTH_LONG).show();
+
+                                bodyList3 = response.body().getBody3();
+                                setBothRecylerViewAdapter(bodyList3);
+
+
+                            } else {
+
+                                Toast.makeText(getApplicationContext(), "Please Try something else", Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<BothSearch> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+
+
+
+                }
+                else if (Position == 1) {
 
                     if (query.isEmpty()) {
 
@@ -306,7 +372,57 @@ public class SearchAble extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
                 progressBar.setVisibility(View.VISIBLE);
-                if (Position == 1) {
+
+
+                if (Position == 0) {
+
+                    Log.d("Response", newText);
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request newRequest = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                    }).build();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .client(client)
+                            .baseUrl("https://axetv.net/api/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    UserService Client = retrofit.create(UserService.class);
+                    Call<BothSearch> SearchCall = Client.getBoth(newText);
+                    SearchCall.enqueue(new Callback<BothSearch>() {
+                        @Override
+                        public void onResponse(Call<BothSearch> call, retrofit2.Response<BothSearch> response) {
+
+
+                            if (response.isSuccessful()) {
+
+                                 //Toast.makeText(getApplicationContext(),"Data Sucessfull integrate",Toast.LENGTH_LONG).show();
+
+                                bodyList3 = response.body().getBody3();
+                                //Log.d("Search",bodyList3.get(0).getName());
+                               setBothRecylerViewAdapter(bodyList3);
+
+
+                            } else {
+
+                                Toast.makeText(getApplicationContext(), "Please Try something else", Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<BothSearch> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+                else if (Position == 1) {
 
                     Log.d("Response", newText);
                     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
@@ -416,6 +532,16 @@ public class SearchAble extends AppCompatActivity {
 
         return true;
 
+    }
+
+    private void setBothRecylerViewAdapter(List<Body3> bodyList3) {
+        recyclerView = findViewById(R.id.lrecyler8);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        bothSearchListViewAdapter= new BothSearchListViewAdapter(this, bodyList3);
+        progressBar.setVisibility(View.INVISIBLE);
+        recyclerView.setAdapter( bothSearchListViewAdapter);
+        bothSearchListViewAdapter.notifyDataSetChanged();
     }
 
     @Override

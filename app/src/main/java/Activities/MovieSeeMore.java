@@ -3,6 +3,7 @@ package Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +51,9 @@ public class MovieSeeMore extends AppCompatActivity {
     MovieGenereListViewAdapter tvGenereListViewAdapter;
     ProgressBar progressBar1, progressBar2;
     NestedScrollView nestedScrollView;
+    RecyclerView recyclerView;
+    List<Datum2> datumList3;
+    List<Datum2> datumList4=new ArrayList<>();
     private boolean isLoading = true;
     private int pastvisibleitem, visibleitemcount, totalitemcount, previous_total = 0;
     int currentPage, from, last_page, per_page, to, total;
@@ -64,6 +68,7 @@ public class MovieSeeMore extends AppCompatActivity {
         progressBar1.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
 
+
         tvcatageory = intent.getStringExtra("item2");
 
         Searchclient(tvcatageory);
@@ -75,6 +80,8 @@ public class MovieSeeMore extends AppCompatActivity {
 
 
         datumList2 = new ArrayList<>();
+        datumList3=new ArrayList<>();
+
     }
     private void Searchclient(String tvcatageory) {
         // Log.d("opoo", tvcatageory);
@@ -126,13 +133,15 @@ public class MovieSeeMore extends AppCompatActivity {
     }
 
     private void setRecylerView(List<Datum2> datumList) {
-        RecyclerView recyclerView = findViewById(R.id.movieseemorerecyleview);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView= findViewById(R.id.movieseemorerecyleview);
+        int columnnumber=3;
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,columnnumber);
         recyclerView.setLayoutManager(layoutManager);
         tvGenereListViewAdapter = new MovieGenereListViewAdapter(this, datumList);
         progressBar1.setVisibility(View.INVISIBLE);
         progressBar2.setVisibility(View.INVISIBLE);
         recyclerView.setAdapter(tvGenereListViewAdapter);
+        //recyclerView.scrollToPosition(currentPage);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -141,17 +150,19 @@ public class MovieSeeMore extends AppCompatActivity {
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     Log.d("-----", "end");
                     progressBar2.setVisibility(View.VISIBLE);
+
+                   // Log.d("post", String.valueOf(currentPage));
                     performePagination();
 
 
                 }
-                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    Log.d("-----", "top");
-                    progressBar2.setVisibility(View.VISIBLE);
-                    performePagination2();
-
-
-                }
+//                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                    Log.d("-----", "top");
+//                    progressBar2.setVisibility(View.VISIBLE);
+//                    performePagination2();
+//
+//
+//                }
             }
 
             @Override
@@ -218,6 +229,7 @@ public class MovieSeeMore extends AppCompatActivity {
 
 
         currentPage = currentPage + 1;
+        recyclerView.scrollToPosition(currentPage);
         Log.d("CurrentPage", String.valueOf(currentPage));
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
@@ -244,7 +256,7 @@ public class MovieSeeMore extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
 
-                    Log.d("api",response.body().getMovie3().getDatum2List().get(0).getTitle());
+                    //Log.d("api",response.body().getMovie3().getDatum2List().get(0).getTitle());
                     //progressBar.setVisibility(View.VISIBLE);
 //                        //Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_LONG).show();
 //                        Log.d("MovieData",response.body().getMessage());
@@ -255,8 +267,17 @@ public class MovieSeeMore extends AppCompatActivity {
 //
 //                        similarMovies=response.body().getData().getSimilarMovies();
 //                        setsimlarMainRecyler(similarMovies);
-                    datumList2 = response.body().getMovie3().getDatum2List();
-                    setRecylerView(datumList2);
+                    datumList2.addAll(response.body().getMovie3().getDatum2List());
+//                    setRecylerView(datumList2);
+                   //tvGenereListViewAdapter = new MovieGenereListViewAdapter(getApplicationContext(), datumList2);
+                    progressBar1.setVisibility(View.INVISIBLE);
+                    progressBar2.setVisibility(View.INVISIBLE);
+                    ///recyclerView.smoothScrollToPosition();
+                    tvGenereListViewAdapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(tvGenereListViewAdapter);
+                    recyclerView.scrollToPosition(datumList2.size()-1);
+                    //recyclerView.smoothScrollToPosition(recyclerView.getBottom());
+                   // recyclerView.notifyAll();
                 }
 
             }

@@ -30,6 +30,7 @@ import Adapter.EpisodeRecylerViewAdapter;
 import Adapter.SimilarTVShowsAdapter;
 import Adapter.TvShowCastAdapter;
 
+import Model.AllSearch.Body3;
 import Model.AllTvshows.Episode;
 import Model.AllTvshows.ModelTvShowDetail;
 import Model.AllTvshows.Movie;
@@ -104,6 +105,7 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
         Log.d("Token", ACCESS_TOKEN);
 
 
+
         tvShowsCasts = new ArrayList<>();
         episodeList = new ArrayList<>();
 
@@ -131,56 +133,238 @@ public class TvShowDetail extends AppCompatActivity implements AdapterView.OnIte
 //        mName=getIntent().getStringExtra("movieName");
 //        mImage=getIntent().getStringExtra("movieImageUrl");
 //        mFileUrl=getIntent().getStringExtra("movieFile");
-        Intent i = getIntent();
-        Bundle bundle = i.getExtras();
-        Movie user = (Movie) bundle.getSerializable("user");
 
-        Intent intent2 = getIntent();
+        Intent ii= getIntent();
+        Bundle bundlebundle = ii.getExtras();
+        Body3 user1 = (Body3) bundlebundle.getSerializable("allsearchtvid");
 
+        //Log.d("tvid",String.valueOf(videoid));
+        if(user1!=null){
+            int videoid=user1.getId();
+            tvearchall(videoid);
 
-        // Integer TvGenere=Integer.valueOf(id);
-
-
-        //setTvgere(TvshowGenreid);
-
-
-        if (user == null) {
-            Intent intent = getIntent();
-            Bundle b = intent.getExtras();
-            Body1 body = (Body1) b.getSerializable("id");
-
-            if (body == null) {
-
-                Intent intent3 = getIntent();
-                int idddd = intent3.getExtras().getInt("Idddd");
-                Log.d("opoo", String.valueOf(idddd));
-                tvGenere(idddd);
-                // Log.d("id", String.valueOf(id));
-            } else {
-
-                Integer SearchId = body.getId();
-                Searchclient(SearchId);
-            }
-
-        } else {
-            Id = user.getId();
-            client(Id);
 
         }
+        else {
+            Intent i = getIntent();
+            Bundle bundle = i.getExtras();
+            Movie user = (Movie) bundle.getSerializable("user");
+
+            Intent intent2 = getIntent();
 
 
-        // Toast.makeText(getApplicationContext(),String.valueOf(Id),Toast.LENGTH_LONG).show();
+            // Integer TvGenere=Integer.valueOf(id);
 
 
-        //set data layout
-
-        listener();
+            //setTvgere(TvshowGenreid);
 
 
-        ////////////////
-        /////fetch data
+            if (user == null) {
+                Intent intent = getIntent();
+                Bundle b = intent.getExtras();
+                Body1 body = (Body1) b.getSerializable("id");
+
+                if (body == null) {
+
+                    Intent intent3 = getIntent();
+                    int idddd = intent3.getExtras().getInt("Idddd");
+
+                    if (String.valueOf(idddd) == null) {
+                        Intent intent1 = getIntent();
+                        Bundle bundle1 = intent1.getExtras();
+                        Body3 body3 = (Body3) bundle1.getSerializable("allsearchtvarticleid");
+                        int tvid = body3.getId();
+                        Log.d("Videoid", String.valueOf(tvid));
+
+                    } else {
+                        Log.d("opoo", String.valueOf(idddd));
+                        tvGenere(idddd);
+                    }
+
+                    // Log.d("id", String.valueOf(id));
+                } else {
+
+                    Integer SearchId = body.getId();
+                    Searchclient(SearchId);
+                }
+
+            } else {
+                Id = user.getId();
+                client(Id);
+
+            }
 
 
+            // Toast.makeText(getApplicationContext(),String.valueOf(Id),Toast.LENGTH_LONG).show();
+
+
+            //set data layout
+
+            listener();
+
+
+            ////////////////
+            /////fetch data
+
+        }
+    }
+
+
+    private void tvearchall(int videoid) {
+
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://axetv.net/api/v2/get/tv-show/detail/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService Client = retrofit.create(UserService.class);
+
+////////////////////////////////////////////////////////////////////////////
+        Call<ModelTvShowDetail> listCall = Client.getTvShowDetail(videoid);
+        listCall.enqueue(new Callback<ModelTvShowDetail>() {
+            @Override
+            public void onResponse(Call<ModelTvShowDetail> call, retrofit2.Response<ModelTvShowDetail> response) {
+                // Log.d("ONRESPONSE",response.body().toString());
+
+
+                /////get data from api//////
+                String Title = response.body().getTitle();
+                String Description = response.body().getDescription();
+                String Avatar = response.body().getBackground();
+                String Trailer = response.body().getTrailer();
+                String Rating = response.body().getRating();
+                Integer Favourite = response.body().getFavourite();
+                Object Director = response.body().getDirector();
+                String Genere = response.body().getGenre();
+                trailerlink = response.body().getTrailer();
+
+                Log.d("trailer", trailerlink);
+
+                seasonslist = response.body().getSeasons();
+                String spinner = null;
+                for (int j = 0; j < seasonslist.size(); j++) {
+
+                    spinner = seasonslist.get(j).getTitle();
+
+                    spineerdata.add(spinner);
+                }
+
+                Log.d("ata", spineerdata.toString());
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_spinner_item, spineerdata);
+                adapter.setDropDownViewResource(R.layout.custom_textview_to_spinner);
+                colorspinner.setAdapter(adapter);
+                Log.d("teeee", spineerdata.toString());
+
+//                    Seasonid = seasonslist.get(i).getId();
+//                    SeasonTitle = seasonslist.get(i).getTitle();
+
+                episodeList = seasonslist.get(0).getEpisodes();
+
+
+                setBannerMoviesPagerAdapter(episodeList);
+
+
+                int size = episodeList.size();
+                totalnumberepisode.setText(String.valueOf(size));
+
+                ////////////
+
+
+                ///////////////////////////////////////
+                ////set tvshowcastRecylerView/////////
+                tvShowsCasts = response.body().getCast();
+                setMainRecyler(tvShowsCasts);
+                //////////////////////////////////////
+
+                //set textview data and image////////
+                tilte.setText(Title);
+                description.setText(Description);
+                //set data layout
+                Glide.with(getApplicationContext()).load(Avatar).into(movieImage);
+                rating.setText(Rating);
+                genere.setText(Genere);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ModelTvShowDetail> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", t.getLocalizedMessage().toString());
+            }
+        });
+        ///////////////////////////////////////
+
+
+        TVshowcast();
+
+//                AppCompatSpinner colorspinner = findViewById(R.id.showseasonspinner);
+//                ArrayAdapter adapter = ArrayAdapter.createFromResource(
+//                        this, R.array.Spinner_Item, R.layout.color_spinner_layout
+//                );
+//                adapter.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+//
+//                colorspinner.setAdapter(adapter);
+//                colorspinner.setOnItemSelectedListener(this);
+        colorspinner = findViewById(R.id.showseasonspinner);
+        //colorspinner.setPopupBackgroundResource(R.drawable.spinner_background);
+
+
+        colorspinner.setOnItemSelectedListener(this);
+        colorspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+                ((TextView) parent.getChildAt(0)).setTextSize(12);
+                //text = selectedItem.toString();
+                Log.d("teeee", selectedItem);
+
+
+                for (int i = 0; i < seasonslist.size(); i++) {
+
+
+                    Seasonid = seasonslist.get(i).getId();
+                    SeasonTitle = seasonslist.get(i).getTitle();
+//
+//
+                    if (SeasonTitle.equals(selectedItem)) {
+                        episodeList = seasonslist.get(i).getEpisodes();
+                        int size = episodeList.size();
+
+                        totalnumberepisode.setText(String.valueOf(size));
+                    }
+
+                    Log.d("tee", SeasonTitle);
+                }
+
+
+                setBannerMoviesPagerAdapter(episodeList);
+
+
+            }
+
+
+            //
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void tvGenere(int idddd) {

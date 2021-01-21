@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.axe.R;
 
 import java.io.IOException;
+import java.sql.DataTruncation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import Model.AllMovies.Movie2;
 import Model.AllMovies.Data;
 import Model.AllMovies.MoviesCast;
 import Model.AllMovies.SimilarMovie;
+import Model.AllSearch.Body3;
 import Model.MovieGenere.Datum2;
 import Model.Search.Body;
 import Model.TvShowGenere.TvGenere;
@@ -84,7 +86,7 @@ public class VideoDetails extends AppCompatActivity {
         constraintLayout=findViewById(R.id.videodetail1);
         moviesCasts=new ArrayList<>();
         similarMovies=new ArrayList<>();
-
+       //Toast.makeText(getApplicationContext(),"video",Toast.LENGTH_LONG).show();
 
         //set data layout
 
@@ -93,41 +95,125 @@ public class VideoDetails extends AppCompatActivity {
         UserSession userSession = new UserSession(getApplicationContext());
         ACCESS_TOKEN = userSession.GetKeyVlaue("access_token");
         Log.d("Token", ACCESS_TOKEN);
+//        Intent intent1=getIntent();
+//        int videoid=intent1.getExtras().getInt("allsearchtvarticleid");
+//        Log.d("Videoid",String.valueOf(videoid));
+        Intent ii= getIntent();
+        Bundle bundlebundle = ii.getExtras();
+       Body3 user1 = (Body3) bundlebundle.getSerializable("allsearchtvarticleid");
 
+        //Log.d("Videoid",String.valueOf(videoid));
+        if(user1!=null){
+            int videoid=user1.getId();
+            Moviesearchall(videoid);
 
-           // client();
-
-
-        Intent i = getIntent();
-        Bundle bundle = i.getExtras();
-        Movie2 user = (Movie2) bundle.getSerializable("user");
-
-        if(user==null){
-            Intent intent=getIntent();
-            Bundle b=intent.getExtras();
-            Body body= (Body) b.getSerializable("id");
-
-            if(body==null){
-
-                Intent intent2 = getIntent();
-                int iddd= intent2.getExtras().getInt("Iddd");
-                tvGenere(iddd);
-               // Log.d("id", String.valueOf(id));
-            }
-            else{
-
-                Integer SearchId=body.getId();
-                Searchclient(SearchId);
-            }
-        }
-        else
-        {
-            Id = user.getArticleId();
-            client(Id);
 
         }
+        else{
+            Intent i = getIntent();
+            Bundle bundle = i.getExtras();
+            Movie2 user = (Movie2) bundle.getSerializable("user");
 
 
+
+            if(user==null){
+                Intent intent=getIntent();
+                Bundle b=intent.getExtras();
+                Body body= (Body) b.getSerializable("id");
+
+                if(body==null){
+
+                    Intent intent2 = getIntent();
+
+                    int iddd= intent2.getExtras().getInt("Iddd");
+
+                    tvGenere(iddd);
+
+
+
+                    // Log.d("id", String.valueOf(id));
+                }
+                else{
+
+                    Integer SearchId=body.getId();
+                    Searchclient(SearchId);
+                }
+            }
+            else
+            {
+                Id = user.getArticleId();
+                client(Id);
+
+            }
+
+        }
+
+
+
+        // client();
+
+
+
+    }
+
+    private void Moviesearchall(int videoid) {
+
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://axetv.net/api/v2/get/article/detail/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService Client = retrofit.create(UserService.class);
+        Call<Main> movieDataCall=Client.getMoviesDetail(videoid);
+        movieDataCall.enqueue(new Callback<Main>() {
+            @Override
+            public void onResponse(Call<Main> call, retrofit2.Response<Main> response) {
+
+
+                if (response.body().getStatusCode()==200){
+
+                    //Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_LONG).show();
+                    Log.d("MovieData",response.body().getMessage());
+
+
+
+                    mImage=response.body().getData().getBackground();
+                    Glide.with(getApplicationContext()).load(mImage).into(movieImage);
+                    mName=response.body().getData().getTitle();
+                    moviename.setText(mName);
+                    String tvdescription1=response.body().getData().getDescription();
+                    tvdescription.setText(tvdescription1);
+                    String R=response.body().getData().getRating();
+                    String g=response.body().getData().getGenre();
+                    rating.setText(R);
+                    genere.setText(g);
+                    playlink=response.body().getData().getVideoLink();
+                    trailerlink=response.body().getData().getTrailerLink();
+
+                    moviesCasts=response.body().getData().getCast();
+                    setMainRecyler(moviesCasts);
+
+                    similarMovies=response.body().getData().getSimilarMovies();
+                    setsimlarMainRecyler(similarMovies);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Main> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d("onResponse", t.getLocalizedMessage().toString());
+            }
+        });
     }
 
     private void tvGenere(int iddd) {

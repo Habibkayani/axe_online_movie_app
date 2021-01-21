@@ -2,11 +2,13 @@ package Retrofit;
 
 import java.util.List;
 
+
 import Model.AllLogin.LoginRequest;
 import Model.AllLogin.LoginResponse;
 
 import Model.AllMovies.Main;
 import Model.AllMovies.PostMovies;
+import Model.AllSearch.BothSearch;
 import Model.AllTvshows.PostTVShows;
 import Model.AllTvshows.ModelTvShowDetail;
 import Model.MovieGenere.MovieGenere;
@@ -57,6 +59,8 @@ public interface UserService {
     @POST("articles")
     Call<Search> getSearch(@Field("title") String title);
 
+
+
     @Headers("Accept:  application/json")
     @FormUrlEncoded
     @POST("shows")
@@ -78,4 +82,10 @@ public interface UserService {
                                     @Field ("order_by") String order_by, @Field ("order")
                                             String order, @Field("genre") String genre
                                     );
+
+    @Headers("Accept:  application/json")
+    @FormUrlEncoded
+    @POST("all_search")
+    Call<BothSearch> getBoth(@Field("title") String title);
+
 }

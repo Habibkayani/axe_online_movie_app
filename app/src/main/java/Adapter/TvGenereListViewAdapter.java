@@ -45,7 +45,7 @@ public class TvGenereListViewAdapter extends RecyclerView.Adapter<TvGenereListVi
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Glide.with(context).load(datumList.get(position).getAvatar()).into(holder.itemimage);
         holder.tvgenereName.setText(datumList.get(position).getTitle());
-        holder.tvgenererating.setText(datumList.get(position).getRating());
+       // holder.tvgenererating.setText(datumList.get(position).getRating());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,7 @@ public class TvGenereListViewAdapter extends RecyclerView.Adapter<TvGenereListVi
 
            itemimage=itemView.findViewById(R.id.tvgenereimage);
             tvgenereName=itemView.findViewById(R.id.tvgeneretitle);
-            tvgenererating=itemView.findViewById(R.id.tvgenereratingrating);
+            //tvgenererating=itemView.findViewById(R.id.tvgenereratingrating);
         }
     }
 }

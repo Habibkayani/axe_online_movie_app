@@ -43,7 +43,7 @@ public class MovieGenereListViewAdapter extends RecyclerView.Adapter<MovieGenere
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Glide.with(context).load(datum2List.get(position).getAvatar()).into(holder.itemimage);
         holder.tvgenereName.setText(datum2List.get(position).getTitle());
-        holder.tvgenererating.setText(datum2List.get(position).getRating());
+       // holder.tvgenererating.setText(datum2List.get(position).getRating());
         holder.itemimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,10 +55,9 @@ public class MovieGenereListViewAdapter extends RecyclerView.Adapter<MovieGenere
 //                i.putExtra("movieRating", tvShowCategoryItems.get(position).getRating());
 //
 //
-//
-//
-//                context.startActivity(i);
 
+//
+//                context.startActivity(i)
                 Datum2 userItem = datum2List.get(position);
                 Intent intent = new Intent(context, VideoDetails.class);
                 intent.putExtra("Iddd", userItem.getArticleId());
@@ -82,7 +81,7 @@ public class MovieGenereListViewAdapter extends RecyclerView.Adapter<MovieGenere
 
             itemimage = itemView.findViewById(R.id.moviegenereimage);
             tvgenereName = itemView.findViewById(R.id.moviegeneretitle);
-            tvgenererating = itemView.findViewById(R.id.moviegenereratingrating);
+       //     tvgenererating = itemView.findViewById(R.id.moviegenereratingrating);
         }
     }
 }
